@@ -1,9 +1,4 @@
-//
-//  UIView[.swift
-//  QuizApp_YouTube
-//
-//  Created by 羽田野真央 on 2024/02/15.
-//
+
 import UIKit
 class GradientView: UIView {
     func applyGradient(topColor: UIColor, bottomColor: UIColor, alpha: CGFloat) {

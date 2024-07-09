@@ -1,9 +1,4 @@
-//
-//  SceneDelegate.swift
-//  QuizApp_YouTube
-//
-//  Created by 羽田野真央 on 2023/12/31.
-//
+
 
 import UIKit
 

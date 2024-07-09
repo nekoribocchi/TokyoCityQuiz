@@ -1,9 +1,3 @@
-//
-//  RankViewController.swift
-//  QuizApp_YouTube
-//
-//  Created by 羽田野真央 on 2024/03/06.
-//
 import UIKit
 
 class RankViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {

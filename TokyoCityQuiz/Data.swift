@@ -1,9 +1,3 @@
-//
-//  Data.swift
-//  QuizApp_YouTube
-//
-//  Created by 羽田野真央 on 2024/02/23.
-//
 
     import Foundation
 
