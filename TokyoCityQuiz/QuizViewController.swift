@@ -41,6 +41,7 @@ class QuizViewController: UIViewController {
 
     // 画面を表示した時に呼ばれる
     override func viewDidLoad() {
+       // resetBestScores()
         self.overrideUserInterfaceStyle = .light
         super.viewDidLoad()
         
@@ -173,7 +174,6 @@ class QuizViewController: UIViewController {
         }
     }
     
-    // 次のクイズに遷移する
     func nextQuiz(){
         quizCount += 1
         if quizCount < 3 {
@@ -192,6 +192,8 @@ class QuizViewController: UIViewController {
                 print("Image not found: \(quizImageName)")
             }
         } else {
+            // クイズが終了した時にスコアを保存
+            saveQuizScore(score: correctCount, date: Date(), time: Date())
             performSegue(withIdentifier: "toScoreVC", sender: nil)
             print("segue")
         }
@@ -233,11 +235,15 @@ class QuizViewController: UIViewController {
         if correctCount > savedBestScore {
             defaults.set(correctCount, forKey: "BestScore")
         }
-        saveQuizScore(score: correctCount, date: Date(), time: Date())
     }
     
     // トップに戻るボタンのアクション
     @IBAction func reTopBuutonAction(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true)
     }
+    // リセットメソッドを追加
+       func resetBestScores() {
+           let defaults = UserDefaults.standard
+           defaults.set([], forKey: "QuizScores")
+       }
 }
