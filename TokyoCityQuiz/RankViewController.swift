@@ -1,5 +1,5 @@
 import UIKit
-/ ランキング画面を表示するViewController
+// ランキング画面を表示するViewController
 class RankViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
