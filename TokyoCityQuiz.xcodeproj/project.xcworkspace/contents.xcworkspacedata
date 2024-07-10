@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Volumes/My Passport for Mac/swift1/tokyo_city_quiz1/TokyoCityQuiz.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

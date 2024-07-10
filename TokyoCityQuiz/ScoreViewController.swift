@@ -1,59 +1,55 @@
-
-
-
 import UIKit
 
+// スコア画面を表示するViewController
 class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scoreLabel: UILabel!
     
-    
     var quizName: String = ""
     var bestScore = 0
-    var topScores = [(score: Int, date:Date , time: Date)]()
+    var topScores = [(score: Int, date: Date, time: Date)]()
     var correctCount = 0
-    var scorePer_current : Int = 0
+    var scorePer_current: Int = 0
     var scorePer: Int = 0
-    
     var bestScorePer: Int = 0
     let numberOfTopScoresToDisplay = 5
-    var topScoresText = "" // topScoresTextを定義
+    var topScoresText = ""
     let quizCount = 10
     
+    // ポートレートモードをサポート
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
             return .portrait
-        }
+    }
     
+    // 画面を表示した時に呼ばれる
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.overrideUserInterfaceStyle = .light
-        
         tableView.separatorColor = .systemPurple
         tableView.dataSource = self
         tableView.delegate = self
         
-        print("correctCount\(correctCount)")
+        // 現在のスコアを計算して表示
         scorePer_current = Int(Double(correctCount) / Double(quizCount) * 100)
         scoreLabel.text = "\(scorePer_current)点"
-        print(scorePer_current)
-        // Retrieve saved quiz scores and dates
+        
+        // 保存されたクイズスコアを取得
         if let quizScores = UserDefaults.standard.array(forKey: "QuizScores") as? [[String: Any]] {
             for quiz in quizScores {
-                if let score = quiz["score"] as? Int, let date = quiz["date"] as? Date ,let time = quiz["time"] as? Date {
+                if let score = quiz["score"] as? Int, let date = quiz["date"] as? Date, let time = quiz["time"] as? Date {
                     topScores.append((score: score, date: date, time: time))
                 }
             }
         }
         
-        // Sort topScores by score in descending order
+        // スコアを降順にソート
         topScores.sort { $0.score > $1.score }
         
-        // Keep only the top five scores
+        // トップ5スコアのみを保持
         topScores = Array(topScores.prefix(numberOfTopScoresToDisplay))
         
-        // Reload table view
+        // テーブルビューをリロード
         tableView.reloadData()
     }
     
@@ -67,26 +63,22 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
         return topScores.count
     }
     
-    
+    // UITableViewの各セルの高さを設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // ここで各セルの高さを設定します
-        return 60// 例として高さを100に設定しています
+        return 60
     }
     
-    
+    // 各セルに表示するデータを設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cell
         
-        // Get score and date for the current index
         let score = topScores[indexPath.row].score
         let date = topScores[indexPath.row].date
         let time = topScores[indexPath.row].time
-        // Display score and date in the cell
+        
         scorePer = Int(Double(score) / Double(quizCount) * 100)
         cell.scoreLabel.text = "\(indexPath.row + 1).  \(scorePer)点"
         
-        
-        print ("\(scorePer)点")
         let dateFormatter = DateFormatter()
         let timeFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -98,9 +90,8 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    // トップに戻るボタンのアクション
     @IBAction func reTopBuutonAction(_ sender: Any) {
-        //二つ目のviewに戻る
         self.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
 }
-
