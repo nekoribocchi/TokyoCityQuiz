@@ -176,7 +176,7 @@ class QuizViewController: UIViewController {
     
     func nextQuiz(){
         quizCount += 1
-        if quizCount < 3 {
+        if quizCount < 10 {
             quizArray = csvArray[quizCount].components(separatedBy: ",")
             
             quizNumberLabel.text = "第\(quizCount+1)問"
