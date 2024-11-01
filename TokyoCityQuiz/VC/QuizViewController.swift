@@ -6,8 +6,6 @@ class QuizViewController: UIViewController {
     
     // クイズ番号のラベル
     @IBOutlet weak var quizNumberLabel: UILabel!
-    //@IBOutlet weak var quizTextView: UITextView!
-    
     // 選択肢ボタン
     @IBOutlet var answerButton1: UIButton!
     @IBOutlet var answerButton2: UIButton!
@@ -241,6 +239,7 @@ class QuizViewController: UIViewController {
     @IBAction func reTopBuutonAction(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true)
     }
+    
     // リセットメソッドを追加
        func resetBestScores() {
            let defaults = UserDefaults.standard
