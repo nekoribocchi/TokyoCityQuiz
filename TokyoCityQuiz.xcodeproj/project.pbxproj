@@ -63,6 +63,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A02E9B42CD46E89002CD870 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8A78B24F2B7DF38C0078A9FB /* GradientView.swift */,
+				8AED61912B4598CC0060642B /* Button_Custom.swift */,
+				8A78B2492B7DE7E10078A9FB /* PurpleButton.swift */,
+				8A6CAA322B7E3311006B3826 /* WhiteButton.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		8A02E9B52CD46EAB002CD870 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8A489A282B8873670024194B /* Data.swift */,
+				8A489A262B8872CF0024194B /* Cell.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8A02E9B62CD46ECE002CD870 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				8A3B669E2B414FF500B083A1 /* ViewController.swift */,
+				8A3B66B02B4155B200B083A1 /* ScoreViewController.swift */,
+				8A3B66AE2B41547A00B083A1 /* QuizViewController.swift */,
+				8AE195212B4AE2D1004B424C /* InitialViewController.swift */,
+				8ACCA3DA2B98523600E2CC02 /* RankViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		8A3B668E2B414FF500B083A1 = {
 			isa = PBXGroup;
 			children = (
@@ -82,20 +114,12 @@
 		8A3B66992B414FF500B083A1 /* TokyoCityQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				8A02E9B62CD46ECE002CD870 /* VC */,
+				8A02E9B52CD46EAB002CD870 /* Models */,
+				8A02E9B42CD46E89002CD870 /* UI */,
 				8A3B669A2B414FF500B083A1 /* AppDelegate.swift */,
 				8A3B669C2B414FF500B083A1 /* SceneDelegate.swift */,
-				8A3B669E2B414FF500B083A1 /* ViewController.swift */,
-				8A489A282B8873670024194B /* Data.swift */,
-				8A489A262B8872CF0024194B /* Cell.swift */,
 				8A3B66A02B414FF500B083A1 /* Main.storyboard */,
-				8A78B24F2B7DF38C0078A9FB /* GradientView.swift */,
-				8A3B66B02B4155B200B083A1 /* ScoreViewController.swift */,
-				8A3B66AE2B41547A00B083A1 /* QuizViewController.swift */,
-				8AE195212B4AE2D1004B424C /* InitialViewController.swift */,
-				8AED61912B4598CC0060642B /* Button_Custom.swift */,
-				8ACCA3DA2B98523600E2CC02 /* RankViewController.swift */,
-				8A78B2492B7DE7E10078A9FB /* PurpleButton.swift */,
-				8A6CAA322B7E3311006B3826 /* WhiteButton.swift */,
 				8AE1951F2B4ADBB3004B424C /* tama.csv */,
 				8A3B66B42B41A12100B083A1 /* image */,
 				8A3B66A32B414FF700B083A1 /* Assets.xcassets */,

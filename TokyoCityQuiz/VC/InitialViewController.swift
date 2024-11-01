@@ -19,7 +19,7 @@ class InitialViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.tag == 1 {
-            loadQuiz(fileName: "tama") // Pass quizName here
+            loadQuiz(fileName: "tama")
         }
         
         
@@ -32,7 +32,7 @@ class InitialViewController: UIViewController {
             }
             
             if let scoreViewController = storyboard?.instantiateViewController(withIdentifier:"ScoreViewController") as? ScoreViewController {
-                present(scoreViewController, animated: true, completion: nil) // Present ScoreViewController
+                present(scoreViewController, animated: true, completion: nil)
                 
             }
         }
