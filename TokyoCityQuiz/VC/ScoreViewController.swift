@@ -13,7 +13,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
     var scorePer_current: Int = 0
     var scorePer: Int = 0
     var bestScorePer: Int = 0
-    let numberOfTopScoresToDisplay = 5
+    let numberOfTopScoresToDisplay = 10
     var topScoresText = ""
     let quizCount = 10
     
@@ -44,7 +44,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         // スコアを降順にソート
-        topScores.sort { $0.score > $1.score }
+        topScores.sort { $0.score > $1.score } //すべての回数分保持
         
         // トップ5スコアのみを保持
         topScores = Array(topScores.prefix(numberOfTopScoresToDisplay))

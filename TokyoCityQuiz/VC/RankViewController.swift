@@ -11,7 +11,7 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var scorePer_current: Int = 0
     var scorePer: Int = 0
     var bestScorePer: Int = 0
-    let numberOfTopScoresToDisplay = 5
+    let numberOfTopScoresToDisplay = 10
     var topScoresText = ""
     let quizCount = 10
     

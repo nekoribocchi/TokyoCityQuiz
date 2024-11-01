@@ -219,12 +219,38 @@ class QuizViewController: UIViewController {
     }
     
     // クイズのスコアを保存する
+    
     func saveQuizScore(score: Int, date: Date, time: Date) {
         let defaults = UserDefaults.standard
         var quizScores = defaults.array(forKey: "QuizScores") as? [[String: Any]] ?? []
         quizScores.append(["score": score, "date": date, "time": time])
         defaults.set(quizScores, forKey: "QuizScores")
     }
+    /*
+     po quizScores
+     ▿ 4 elements
+       ▿ 0 : 3 elements
+         ▿ 0 : 2 elements
+           - key : "date"
+           - value : 2024-10-22 06:29:42 +0000
+         ▿ 1 : 2 elements
+           - key : "score"
+           - value : 2
+         ▿ 2 : 2 elements
+           - key : "time"
+           - value : 2024-10-22 06:29:42 +0000
+       ▿ 1 : 3 elements
+         ▿ 0 : 2 elements
+           - key : "time"
+           - value : 2024-10-28 09:49:43 +0000
+         ▿ 1 : 2 elements
+           - key : "date"
+           - value : 2024-10-28 09:49:43 +0000
+         ▿ 2 : 2 elements
+           - key : "score"
+           - value : 4
+     */
+    
     
     // ユーザーのベストスコアを保存する
     func saveBestScore() {
