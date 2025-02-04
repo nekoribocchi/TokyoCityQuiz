@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isPersented = false
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,7 +16,6 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
-        .padding()
     }
 }
 
