@@ -11,28 +11,20 @@ import Foundation
 class QuizViewModel: ObservableObject{
     @Published var isAnswered = false
     @Published var selectedAnswerIndex: Int?
-    var citiesArray: [String] = []
     
+    var quiz:[Quiz] =
+    [Quiz(id: 1,options: ["国立市","東村山市","豊島区","練馬区"], correctAnswerIndex: 1, image: "1.png"),
+     Quiz(id: 2,options: ["国立市","東村山市","豊島区","練馬区"], correctAnswerIndex: 1, image: "1.png"),
+     ]
     
-    init(){
-        if let filePath = Bundle.main.path(forResource: "city", ofType: "csv") {
-            let allBundles = Bundle.allBundles
-
-        }
-                print(citiesArray)
+    var isCorrect: Bool{
+        selectedAnswerIndex == quiz[0].correctAnswerIndex
     }
     
-
     func selectedAnsewer(_ index: Int){
         selectedAnswerIndex = index
         isAnswered = true
     }
+  
     
-    func parseCitiesFromCSV(csvString: String) -> [String] {
-        let rows = csvString.components(separatedBy: .newlines)
-        return rows.dropFirst().compactMap { row in
-            let columns = row.components(separatedBy: ",")
-            return columns.count > 1 ? columns[1] : nil
-        }
-    }
 }
