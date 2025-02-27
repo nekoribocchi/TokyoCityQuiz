@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct TokyoCityQuiz2App: App {
+    @State private var hasCompletedOnboarding: Bool = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
+    
     var body: some Scene {
+        
         WindowGroup {
-            MainView()
+            if hasCompletedOnboarding {
+                ContentView() // 通常の画面へ
+            } else {
+                OnboardingView(onboardingCompleted: {
+                    UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+                    hasCompletedOnboarding = true // 画面を切り替える
+                })
+            }
         }
     }
 }

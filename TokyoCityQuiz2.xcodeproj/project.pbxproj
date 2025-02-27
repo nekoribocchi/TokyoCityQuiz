@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8A82FF592D6F4E0E002147DA /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 8A82FF582D6F4E0E002147DA /* UIOnboarding */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8A3AE3262D51C3C1007F1572 /* TokyoCityQuiz2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TokyoCityQuiz2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A82FF592D6F4E0E002147DA /* UIOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = TokyoCityQuiz2;
 			packageProductDependencies = (
+				8A82FF582D6F4E0E002147DA /* UIOnboarding */,
 			);
 			productName = TokyoCityQuiz2;
 			productReference = 8A3AE3262D51C3C1007F1572 /* TokyoCityQuiz2.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 8A3AE31D2D51C3C1007F1572;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8A82FF572D6F4E0E002147DA /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8A3AE3272D51C3C1007F1572 /* Products */;
 			projectDirPath = "";
@@ -339,6 +348,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A82FF572D6F4E0E002147DA /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A82FF582D6F4E0E002147DA /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A82FF572D6F4E0E002147DA /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A3AE31E2D51C3C1007F1572 /* Project object */;
 }
