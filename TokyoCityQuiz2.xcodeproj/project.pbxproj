@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A82FF592D6F4E0E002147DA /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 8A82FF582D6F4E0E002147DA /* UIOnboarding */; };
+		8AD078E22D95292C00CD757F /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 8AD078E12D95292C00CD757F /* UIOnboarding */; };
+		8AD078E52D952EE000CD757F /* GlassmorphismUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8AD078E42D952EE000CD757F /* GlassmorphismUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A82FF592D6F4E0E002147DA /* UIOnboarding in Frameworks */,
+				8AD078E52D952EE000CD757F /* GlassmorphismUI in Frameworks */,
+				8AD078E22D95292C00CD757F /* UIOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +40,7 @@
 			isa = PBXGroup;
 			children = (
 				8A3AE3282D51C3C1007F1572 /* TokyoCityQuiz2 */,
+				8A7D1D0C2D86E7B800BD777D /* Frameworks */,
 				8A3AE3272D51C3C1007F1572 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,6 +51,13 @@
 				8A3AE3262D51C3C1007F1572 /* TokyoCityQuiz2.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8A7D1D0C2D86E7B800BD777D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -70,7 +80,8 @@
 			);
 			name = TokyoCityQuiz2;
 			packageProductDependencies = (
-				8A82FF582D6F4E0E002147DA /* UIOnboarding */,
+				8AD078E12D95292C00CD757F /* UIOnboarding */,
+				8AD078E42D952EE000CD757F /* GlassmorphismUI */,
 			);
 			productName = TokyoCityQuiz2;
 			productReference = 8A3AE3262D51C3C1007F1572 /* TokyoCityQuiz2.app */;
@@ -101,7 +112,8 @@
 			mainGroup = 8A3AE31D2D51C3C1007F1572;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				8A82FF572D6F4E0E002147DA /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+				8AD078E02D95292C00CD757F /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+				8AD078E32D952EE000CD757F /* XCRemoteSwiftPackageReference "GlassmorphismUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8A3AE3272D51C3C1007F1572 /* Products */;
@@ -350,7 +362,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8A82FF572D6F4E0E002147DA /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+		8AD078E02D95292C00CD757F /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
 			requirement = {
@@ -358,13 +370,26 @@
 				minimumVersion = 2.0.4;
 			};
 		};
+		8AD078E32D952EE000CD757F /* XCRemoteSwiftPackageReference "GlassmorphismUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nekoribocchi/GlassmorphismUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8A82FF582D6F4E0E002147DA /* UIOnboarding */ = {
+		8AD078E12D95292C00CD757F /* UIOnboarding */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A82FF572D6F4E0E002147DA /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			package = 8AD078E02D95292C00CD757F /* XCRemoteSwiftPackageReference "UIOnboarding" */;
 			productName = UIOnboarding;
+		};
+		8AD078E42D952EE000CD757F /* GlassmorphismUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AD078E32D952EE000CD757F /* XCRemoteSwiftPackageReference "GlassmorphismUI" */;
+			productName = GlassmorphismUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

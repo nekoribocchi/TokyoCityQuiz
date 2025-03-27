@@ -14,8 +14,9 @@ struct TokyoCityQuiz2App: App {
     var body: some Scene {
         
         WindowGroup {
+            
             if hasCompletedOnboarding {
-                ContentView() // 通常の画面へ
+                MainView() // 通常の画面へ
             } else {
                 OnboardingView(onboardingCompleted: {
                     UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
@@ -23,5 +24,6 @@ struct TokyoCityQuiz2App: App {
                 })
             }
         }
+           
     }
 }

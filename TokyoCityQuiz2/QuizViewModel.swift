@@ -13,8 +13,8 @@ class QuizViewModel: ObservableObject{
     @Published var selectedAnswerIndex: Int?
     
     var quiz:[Quiz] =
-    [Quiz(id: 1,options: ["国立市","東村山市","豊島区","練馬区"], correctAnswerIndex: 1, image: "1.png"),
-     Quiz(id: 2,options: ["国立市","東村山市","豊島区","練馬区"], correctAnswerIndex: 1, image: "1.png"),
+    [Quiz(options: ["国立市","東村山市","豊島区","練馬区"], correctAnswerIndex: 1, image: "1.png"),
+     Quiz(options: ["国立市","東村山市","豊島区","練馬区"], correctAnswerIndex: 1, image: "1.png"),
      ]
     
     var isCorrect: Bool{

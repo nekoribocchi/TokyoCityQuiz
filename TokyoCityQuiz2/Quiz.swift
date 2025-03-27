@@ -8,12 +8,7 @@
 import Foundation
 
 struct Quiz {
-    let id: Int
     let options: [String]
     let correctAnswerIndex: Int
     let image: String
 }
-
-
-
-
