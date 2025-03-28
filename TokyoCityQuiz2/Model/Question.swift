@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct Quiz {
+struct Question {
+    let cityName: String
+    let imageName: String
     let options: [String]
     let correctAnswerIndex: Int
-    let image: String
 }
+

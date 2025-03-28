@@ -4,57 +4,68 @@
 //
 //  Created by 羽田野真央 on 2025/02/04.
 //
-
 import SwiftUI
 
 struct QuizView: View {
-    @StateObject private var quizViewModel = QuizViewModel()
+    @ObservedObject var viewModel: QuizViewModel
     
     var body: some View {
-        VStack(spacing:  20){
-            Text("この区市町村名はどこ？")
-            
-/*options: ["国立市","東村山市","豊島区","練馬区"],
-
-We use 'indeces' because we want the 'index' variable to hold the numeric index value, not the string.
-      */
-            
-            ForEach(quizViewModel.quiz[0].options.indices, id:\.self){ index in
-                Button(action: {
-                    quizViewModel.selectedAnsewer(index)
-                    //the method hold this code 'selectedAnswerIndex = index'
-                }){
-                    Text(quizViewModel.quiz[0].options[index])
-                        .padding(25)
-                        .frame(maxWidth: .infinity)
-                        .background(buttonBackgroundColor(index))
-                        .foregroundColor(.white)
-                        .cornerRadius(20)
+        VStack {
+            if viewModel.isQuizFinished {
+                // クイズ終了後のスコア画面
+                Text("あなたのスコアは \(viewModel.score) 点です")
+                    .font(.largeTitle)
+                    .padding()
+                
+                Button("ランキングを見る") {
+                    // ランキング画面へ遷移
                 }
-                .disabled(quizViewModel.isAnswered)
-                .padding(.horizontal,20)
+            } else {
+                // 現在の問題
+                Text("問題 \(viewModel.currentQuestionIndex + 1) / \(viewModel.questions.count)")
+                    .font(.title2)
+                    .padding()
+                
+                // クイズの問題（都市名を表示）
+                Text(viewModel.questions[viewModel.currentQuestionIndex].cityName)
+                    .font(.title)
+                    .padding()
+                
+                // 選択肢のボタンを表示
+                ForEach(0..<4) { index in
+                    Button(action: {
+                        viewModel.selectAnswer(index: index)
+                    }) {
+                        Text(viewModel.questions[viewModel.currentQuestionIndex].options[index])
+                            .font(.title2)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(5)
+                }
+                
+                // 現在選択している答え
+                if let selectedIndex = viewModel.selectedAnswerIndex {
+                    Text("あなたの選択: \(viewModel.questions[viewModel.currentQuestionIndex].options[selectedIndex])")
+                        .padding()
+                }
+            }
+        }
+        .padding()
+        .onAppear {
+            // クイズ開始時に問題を生成する
+            if viewModel.questions.isEmpty {
+                viewModel.generateQuestions()
             }
         }
     }
-    
-    //The index indicates options of Answer.
-    private func buttonBackgroundColor(_ index: Int) -> Color {
-        guard quizViewModel.isAnswered else{
-            return .blue
-        }
-        if index == quizViewModel.quiz[0].correctAnswerIndex {
-            return .green
-        }
-        else if  index == quizViewModel.selectedAnswerIndex {
-            return .red
-        }
-        return .blue
-    }
-    
-
 }
 
-
-#Preview {
-    QuizView()
+struct QuizView_Previews: PreviewProvider {
+    static var previews: some View {
+        // 10問でQuizViewを表示
+        QuizView(viewModel: QuizViewModel(questionCount: 10))
+    }
 }

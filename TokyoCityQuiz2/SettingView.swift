@@ -7,12 +7,29 @@
 
 import SwiftUI
 
-struct SettingView: View {
+struct SettingsView: View {
+    @ObservedObject var viewModel: QuizViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("問題数を選択してください")
+            
+            Picker("問題数", selection: $viewModel.questionCount) {
+                ForEach(5..<21) { count in
+                    Text("\(count)問")
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            
+            Button("クイズを開始") {
+                // クイズ画面へ遷移
+            }
+        }
+        .padding()
     }
 }
 
 #Preview {
-    SettingView()
+    
+    SettingsView(viewModel: QuizViewModel(questionCount: 2))
 }

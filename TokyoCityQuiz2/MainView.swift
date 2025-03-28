@@ -46,10 +46,10 @@ struct MainView: View {
                         RankingView()
                     }
                     .navigationDestination(isPresented: $isShowQuiz){
-                        QuizView()
+                        QuizView(viewModel: QuizViewModel(questionCount: 10))
                     }
                     .navigationDestination(isPresented: $isShowSetting){
-                         SettingView()
+                        SettingsView(viewModel: QuizViewModel(questionCount: 10))
                     }
                 }
                 .edgesIgnoringSafeArea(.bottom)
