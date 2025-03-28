@@ -12,6 +12,8 @@ struct MainView: View {
     @State private var isShowQuiz = false
     @State private var isShowSetting = false
     @State private var isShowRanking = false
+    @StateObject var quizViewModel: QuizViewModel
+
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
@@ -46,7 +48,7 @@ struct MainView: View {
                         RankingView()
                     }
                     .navigationDestination(isPresented: $isShowQuiz){
-                        QuizView(viewModel: QuizViewModel(questionCount: 10))
+                        QuizView(viewModel: quizViewModel)
                     }
                     .navigationDestination(isPresented: $isShowSetting){
                         SettingView(viewModel: QuizViewModel(questionCount: 10))
@@ -60,6 +62,7 @@ struct MainView: View {
 
 
 #Preview {
-    MainView()
+   
+    MainView(quizViewModel: QuizViewModel(questionCount: 3))
 }
 

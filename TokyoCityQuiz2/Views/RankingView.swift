@@ -6,10 +6,25 @@
 //
 
 import SwiftUI
+import GlassmorphismUI
 
 struct RankingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            RoundedTopBar(text: "", isGradient: true)
+            
+            RoundRectangleView(heightRatio: 0.8)
+            
+            List {
+                ForEach(0..<10) { i in
+                    Text("項目 \(i)")
+                        .foregroundColor(.white)
+                }
+                .listRowBackground(Color.clear)
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
+        }
     }
 }
 

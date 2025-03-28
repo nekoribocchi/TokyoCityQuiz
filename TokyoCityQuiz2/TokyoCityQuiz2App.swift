@@ -10,13 +10,13 @@ import SwiftUI
 @main
 struct TokyoCityQuiz2App: App {
     @State private var hasCompletedOnboarding: Bool = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
+    @StateObject private var quizViewModel = QuizViewModel(questionCount: 3)
     
     var body: some Scene {
-        
         WindowGroup {
             
             if hasCompletedOnboarding {
-                MainView() // 通常の画面へ
+                MainView(quizViewModel: quizViewModel) // 通常の画面へ
             } else {
                 OnboardingView(onboardingCompleted: {
                     UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")

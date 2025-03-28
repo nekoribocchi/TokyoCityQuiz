@@ -15,7 +15,7 @@ struct SettingView: View {
             Text("問題数を選択してください")
             
             Picker("問題数", selection: $viewModel.questionCount) {
-                ForEach(5..<21) { count in
+                ForEach(1..<4) { count in
                     Text("\(count)問")
                 }
             }
