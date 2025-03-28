@@ -13,20 +13,21 @@ struct RankingView: View {
         ZStack{
             RoundedTopBar(text: "", isGradient: true)
             
-            RoundRectangleView(heightRatio: 0.8)
-            
-            List {
-                ForEach(0..<10) { i in
-                    Text("項目 \(i)")
-                        .foregroundColor(.white)
+            RoundRectangleView(heightRatio: 0.8){
+                
+                List {
+                    ForEach(0..<10) { i in
+                        Text("項目 \(i)")
+                            .foregroundColor(.black)
+                    }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
+                .scrollContentBackground(.hidden)
+                .background(Color.clear)
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.clear)
+        }
         }
     }
-}
 
 #Preview {
     RankingView()
