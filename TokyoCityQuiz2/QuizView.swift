@@ -69,3 +69,4 @@ struct QuizView_Previews: PreviewProvider {
         QuizView(viewModel: QuizViewModel(questionCount: 10))
     }
 }
+
