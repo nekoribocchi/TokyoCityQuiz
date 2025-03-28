@@ -17,13 +17,11 @@ struct QuizView: View {
             RoundRectangleView(heightRatio: 0.8){
                 VStack{
                     if viewModel.isQuizFinished {
-                        // クイズ終了後のスコア画面
                         Text("あなたのスコアは \(viewModel.score) 点です")
                             .font(.largeTitle)
                             .padding()
                         
                         Button("ランキングを見る") {
-                            // ランキング画面へ遷移
                         }
                     } else {
                         HStack {
@@ -38,13 +36,10 @@ struct QuizView: View {
                         }
                         .padding(.horizontal, UIScreen.main.bounds.width / 15)
 
-                        
-                        // クイズの問題（都市名を表示）
                         Text(viewModel.questions[viewModel.currentQuestionIndex].cityName)
                             .font(.title)
                             .padding()
-                        
-                        // 選択肢のボタンを表示
+                    
                         ForEach(0..<4) { index in
                             Button(action: {
                                 viewModel.selectAnswer(index: index)
@@ -64,7 +59,6 @@ struct QuizView: View {
         }
       
         .onAppear {
-            // クイズ開始時に問題を生成する
             if viewModel.questions.isEmpty {
                 viewModel.generateQuestions()
             }
@@ -75,8 +69,7 @@ struct QuizView: View {
 
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
-        // 10問でQuizViewを表示
-        QuizView(viewModel: QuizViewModel(questionCount: 10))
+        QuizView(viewModel: QuizViewModel(questionCount: 3))
     }
 }
 
