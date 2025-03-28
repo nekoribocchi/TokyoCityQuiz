@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct SettingView: View {
     @ObservedObject var viewModel: QuizViewModel
 
     var body: some View {
@@ -31,5 +31,5 @@ struct SettingsView: View {
 
 #Preview {
     
-    SettingsView(viewModel: QuizViewModel(questionCount: 2))
+    SettingView(viewModel: QuizViewModel(questionCount: 2))
 }

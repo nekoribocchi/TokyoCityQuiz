@@ -5,11 +5,17 @@
 //  Created by 羽田野真央 on 2025/02/04.
 //
 import SwiftUI
+import GlassmorphismUI
 
 struct QuizView: View {
     @ObservedObject var viewModel: QuizViewModel
     
     var body: some View {
+        ZStack{
+            RoundedTopBar(text: "第\(viewModel.currentQuestionIndex + 1) 問 /  \(viewModel.questionCount)問中", isGradient: true)
+      
+            RoundRectangleView(heightRatio: 0.8)
+            
         VStack {
             if viewModel.isQuizFinished {
                 // クイズ終了後のスコア画面
@@ -21,11 +27,17 @@ struct QuizView: View {
                     // ランキング画面へ遷移
                 }
             } else {
-                // 現在の問題
-                Text("問題 \(viewModel.currentQuestionIndex + 1) / \(viewModel.questions.count)")
-                    .font(.title2)
-                    .padding()
-                
+                GeometryReader { geometry in
+                    let topPadding = geometry.size.height / 2
+                    let hPadding = geometry.size.width / 10
+                Image(viewModel.questions[viewModel.currentQuestionIndex].cityName)
+                        .resizable()
+                             .aspectRatio(contentMode: .fit)
+                             .padding(.horizontal, hPadding)
+                             .padding(.top, topPadding)
+                             .frame(maxWidth: .infinity, alignment: .center)
+                     }
+
                 // クイズの問題（都市名を表示）
                 Text(viewModel.questions[viewModel.currentQuestionIndex].cityName)
                     .font(.title)
@@ -45,12 +57,6 @@ struct QuizView: View {
                     }
                     .padding(5)
                 }
-                
-                // 現在選択している答え
-                if let selectedIndex = viewModel.selectedAnswerIndex {
-                    Text("あなたの選択: \(viewModel.questions[viewModel.currentQuestionIndex].options[selectedIndex])")
-                        .padding()
-                }
             }
         }
         .padding()
@@ -60,6 +66,7 @@ struct QuizView: View {
                 viewModel.generateQuestions()
             }
         }
+    }
     }
 }
 
