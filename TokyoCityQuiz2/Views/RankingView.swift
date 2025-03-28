@@ -11,7 +11,7 @@ import GlassmorphismUI
 struct RankingView: View {
     var body: some View {
         ZStack{
-            RoundedTopBar(text: "", isGradient: true)
+            RoundedTopBar(text: "ランキング", isGradient: true)
             
             RoundRectangleView(heightRatio: 0.8){
                 
