@@ -17,10 +17,11 @@ class QuizViewModel: ObservableObject{
     @Published var isQuizFinished: Bool = false
     @Published var scoreHistory: [Score] = []
     @Published var questionCount: Int
+    private let scoreManager = ScoreManager()
     
     init(questionCount: Int){
         self.questionCount = questionCount
-        loadScoreHistory()
+        self.scoreHistory = scoreManager.load()
         self.generateQuestions()
     }
     
@@ -66,30 +67,7 @@ class QuizViewModel: ObservableObject{
     
     func finishQuiz(){
         isQuizFinished = true
-        saveScore()
-        
-    }
-    
-    func saveScore(){
-        let newScore = Score(date: Date(), score: score)
-        scoreHistory.append(newScore)
-
-        if let encoded = try? JSONEncoder().encode(scoreHistory) {
-            UserDefaults.standard.set(encoded, forKey: "scoreHistory")
-        }
-    }
-    
-    func loadScoreHistory(){
-        if let data = UserDefaults.standard.data(forKey: "scoreHistory"),
-           let decoded = try? JSONDecoder().decode([Score].self, from: data) {
-            scoreHistory = decoded
-        }
-    }
-
-    func getTopScores() -> [Score]{
-        return scoreHistory.sorted{
-            $0.score > $1.score
-        }
+        scoreManager.save(score: score)
     }
     
     func resetQuiz(){

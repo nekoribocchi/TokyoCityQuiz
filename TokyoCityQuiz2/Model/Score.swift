@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Score :Encodable,Decodable{
+struct Score:Codable{
     let date: Date
     let score: Int
 }
