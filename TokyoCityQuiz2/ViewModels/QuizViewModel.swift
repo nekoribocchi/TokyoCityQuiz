@@ -20,6 +20,7 @@ class QuizViewModel: ObservableObject{
     
     init(questionCount: Int){
         self.questionCount = questionCount
+        loadScoreHistory()
         self.generateQuestions()
     }
     
@@ -46,7 +47,7 @@ class QuizViewModel: ObservableObject{
             
             allQuestions.append(question)
         }
-        self.questions = allQuestions 
+        self.questions = allQuestions
     }
     
     func selectAnswer(index: Int){
@@ -61,31 +62,45 @@ class QuizViewModel: ObservableObject{
         if currentQuestionIndex >= questions.count{
             finishQuiz()
         }
+    }
+    
+    func finishQuiz(){
+        isQuizFinished = true
+        saveScore()
         
-        func finishQuiz(){
-            isQuizFinished = true
-            saveScore()
-            
+    }
+    
+    func saveScore(){
+        let newScore = Score(date: Date(), score: score)
+        scoreHistory.append(newScore)
+
+        if let encoded = try? JSONEncoder().encode(scoreHistory) {
+            UserDefaults.standard.set(encoded, forKey: "scoreHistory")
         }
-        
-        func saveScore(){
-            let newScore = Score(date: Date(), score: score)
-            scoreHistory.append(newScore)
+    }
+    
+    func loadScoreHistory(){
+        if let data = UserDefaults.standard.data(forKey: "scoreHistory"),
+           let decoded = try? JSONDecoder().decode([Score].self, from: data) {
+            scoreHistory = decoded
         }
-        
-        func getTopScores() -> [Score]{
-            return scoreHistory.sorted{
-                $0.score > $1.score
-            }
+    }
+
+    func getTopScores() -> [Score]{
+        return scoreHistory.sorted{
+            $0.score > $1.score
         }
-        
-        func resetQuiz(){
-            score = 0
-            currentQuestionIndex = 0
-            answerHistory = []
-            isQuizFinished = false
-            generateQuestions()
-        }
-    }}
+    }
+    
+    func resetQuiz(){
+        score = 0
+        currentQuestionIndex = 0
+        answerHistory = []
+        isQuizFinished = false
+        generateQuestions()
+    }
+    
+    
+}
 
 
