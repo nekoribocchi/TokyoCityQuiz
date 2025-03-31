@@ -17,7 +17,6 @@ struct MainView: View {
     @State private var animate = false
     private let scoreManager = ScoreManager()
     @State private var isInQuiz = false
-    @Binding private var isFromScoreView: Bool
     
     var body: some View {
         NavigationStack {
@@ -50,7 +49,7 @@ struct MainView: View {
                         
                     }
                     .navigationDestination(isPresented: $isShowRanking){
-                        RankingView(scoreManager: scoreManager, fromScoreView: $isFromScoreView)
+                        RankingView(scoreManager: scoreManager)
                     }
                     .navigationDestination(isPresented: $isShowQuiz){
                         QuizView(viewModel: quizViewModel)
@@ -98,5 +97,10 @@ struct MainView: View {
             }
         }.navigationBarBackButtonHidden(true)
     }
+}
+
+#Preview {
+    
+    MainView()
 }
 

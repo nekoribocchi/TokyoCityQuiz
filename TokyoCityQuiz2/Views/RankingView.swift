@@ -10,7 +10,6 @@ import GlassmorphismUI
 
 struct RankingView: View {
     let scoreManager:ScoreManager
-    @Binding var fromScoreView: Bool
     
     var body: some View {
         ZStack{
@@ -33,7 +32,7 @@ struct RankingView: View {
         .navigationBarBackButtonHidden(true)
         }
     }
-//
-//#Preview {
-//    RankingView(scoreManager: ScoreManager(), fromScoreView: true)
-//}
+
+#Preview {
+    RankingView(scoreManager: ScoreManager())
+}
