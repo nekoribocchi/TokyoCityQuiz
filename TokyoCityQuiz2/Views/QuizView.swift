@@ -10,15 +10,15 @@ import GlassmorphismUI
 struct QuizView: View {
     @ObservedObject var viewModel: QuizViewModel
     let scoreManager = ScoreManager()
+    
     var body: some View {
         VStack{
-          
             if viewModel.isQuizFinished {
                 ScoreView(quizViewModel: viewModel)
             } else {
                 ZStack{
                     RoundedTopBar(text: "第\(viewModel.currentQuestionIndex + 1) 問 /  \(viewModel.questionCount)問中", isGradient: true)
-                    RoundRectangleView(heightRatio: 0.8){
+                    RoundRectangleView(heightRatio: 0.85){
                         VStack{
                             HStack {
                                 Spacer(minLength: 0)
@@ -34,34 +34,36 @@ struct QuizView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(maxWidth: 700)
                                 
-                                
                                 Spacer(minLength: 0)
                             }
                             .padding(.horizontal, UIScreen.main.bounds.width / 15)
                             
-                            Text(viewModel.questions[viewModel.currentQuestionIndex].cityName)
-                                .font(.title)
-                                .padding()
-                            
+//                            Text(viewModel.questions[viewModel.currentQuestionIndex].cityName)
+//                                .font(.title)
+//                                .padding()
+//                            
                             ForEach(0..<4) { index in
-                                Button(action: {
+                                ButtonBase.simple(title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
+                                                  backgroundColor: .white,
+                                                  textColor: .r_Purple,
+                                                  font: "PottaOne-Regular",
+                                                  isFurigana: true,
+                                                  furigana: "ふりがな",
+                                                  action: {
                                     viewModel.selectAnswer(index: index)
-                                }) {
-                                    Text(viewModel.questions[viewModel.currentQuestionIndex].options[index])
-                                        .font(.title2)
-                                        .padding()
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                }
+                                })
+                                .padding(5)
                                 
                             }
                         }
                     }
+                    BackButton()
+                    
                 }
             }
         }
-      
+        
+        .navigationBarBackButtonHidden(true)
         .onAppear {
             if viewModel.questions.isEmpty {
                 viewModel.generateQuestions()
@@ -70,10 +72,10 @@ struct QuizView: View {
     }
 }
 
-
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
-        QuizView(viewModel: QuizViewModel(questionCount: 3))
+        QuizView(
+            viewModel: QuizViewModel(questionCount: 3)
+        )
     }
 }
-

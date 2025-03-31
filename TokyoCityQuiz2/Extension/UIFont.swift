@@ -9,7 +9,6 @@ import Foundation
 import SwiftUICore
 
 extension Font {
-
     static func potta(size: CGFloat) -> Font {
         return Font.custom("PottaOne-Regular", size: size)
     }

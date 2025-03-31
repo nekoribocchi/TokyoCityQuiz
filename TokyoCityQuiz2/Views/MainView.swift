@@ -15,7 +15,7 @@ struct MainView: View {
     @StateObject var quizViewModel =  QuizViewModel(questionCount: 3)
     @State private var animate = false
     private let scoreManager = ScoreManager()
-    
+    @State private var isInQuiz = false
     
     var body: some View {
         NavigationStack {

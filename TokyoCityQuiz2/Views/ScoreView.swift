@@ -23,34 +23,54 @@ struct ScoreView: View {
                 
                 RoundRectangleView(heightRatio: 0.8){
                     VStack{
-                        ZStack{
-                            
-                            Circle()
-                            
-                                .foregroundColor(.g_Purple)
-                                .opacity(0.4)
-                                .padding()
-                            VStack{
-                                Text("\(quizViewModel.score) 点")
-                                    .font(.largeTitle)
-                                    .padding()
-                                Text("惜しい！もう少し頑張ってみよう！")
-                            }
-                        }
-                        CustomCircleButton(action: {
-                            isShowRanking = true
-                            quizViewModel.resetQuiz()
-                        }, size: 30, icon: Image(systemName: "gearshape.fill"))
                         
-                        CustomCircleButton(action: {
-                            isShowQuiz = true
-                            quizViewModel.resetQuiz()
-                        }, size: 30, icon: Image(systemName: "gamecontroller.fill"))
+                        CircleGradientView(content: {
+                            VStack{
+                                Text("30点")
+                                    .font(.potta(size: 60))
+                                
+                                Text("その調子！")
+                                    .font(.custom("PottaOne-Regular", size: 20))
+                            }
+                        })
+                                              
+                        ButtonBase.simple(
+                            title: "リプレイ",
+                            font: "PottaOne-Regular",
+                            isFurigana: true,
+                            furigana: "りぷれい",
+                            action: {
+                                isShowQuiz = true
+                                quizViewModel.resetQuiz()
+                            }
+                        )
+                        
+                        ButtonBase.simple(
+                            title: "スコア一覧へ",
+                            font: "PottaOne-Regular",
+                            isFurigana: true,
+                            furigana: "すこあいちらんへ",
+                            action: {
+                                isShowRanking = true
+                                quizViewModel.resetQuiz()
+                            }
+                        )
+                        ButtonBase.simple(
+                            title: "ホーム画面へ",
+                            font: "PottaOne-Regular",
+                            isFurigana: true,
+                            furigana: "ほーむがめんへ",
+                            action: {
+                                quizViewModel.resetQuiz()
+                            }
+                        )
                         
                     }
                 }
             }
-        }.navigationDestination(isPresented: $isShowRanking){
+            .navigationBarBackButtonHidden(true)
+        }
+        .navigationDestination(isPresented: $isShowRanking){
           RankingView(scoreManager: scoreManager)
         }
         .navigationDestination(isPresented: $isShowQuiz){

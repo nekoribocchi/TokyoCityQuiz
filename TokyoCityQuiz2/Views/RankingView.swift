@@ -21,13 +21,17 @@ struct RankingView: View {
                     ForEach(Array(scoreManager.getTopScores().prefix(10).enumerated()), id: \.offset) { index, score in
                         Text("\(score.score) 点\(score.date.formatted(date: .abbreviated, time: .shortened))")
                     }
-
+                    
                     .listRowBackground(Color.clear)
                 }
                 .scrollContentBackground(.hidden)
                 .background(Color.clear)
             }
+            BackButton{
+                
+            }
         }
+        .navigationBarBackButtonHidden(true)
         }
     }
 

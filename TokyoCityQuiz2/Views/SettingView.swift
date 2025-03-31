@@ -25,6 +25,7 @@ struct SettingView: View {
                 // クイズ画面へ遷移
             }
         }
+        .navigationBarBackButtonHidden(true)
         .padding()
     }
 }
