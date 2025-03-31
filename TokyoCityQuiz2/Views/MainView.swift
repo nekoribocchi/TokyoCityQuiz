@@ -61,18 +61,18 @@ struct MainView: View {
                     VStack{
                         Text("とないくしちょうそん")
                             .font(.potta(size: 20))
-                            .foregroundColor(.r_Purple)
+                            .foregroundColor(.white)
                             .lineLimit(nil)
                             .padding(.top, 100)
                         
                         Text("都内区市町村")
                             .font(.potta(size: 60))
-                            .foregroundColor(.r_Purple)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                         Text("クイズ")
                             .font(.potta(size: 60))
-                            .foregroundColor(.r_Purple)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                         Spacer()
