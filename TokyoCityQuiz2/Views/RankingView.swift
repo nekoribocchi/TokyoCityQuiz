@@ -27,9 +27,7 @@ struct RankingView: View {
                 .scrollContentBackground(.hidden)
                 .background(Color.clear)
             }
-            BackButton{
-                
-            }
+            BackButton()
         }
         .navigationBarBackButtonHidden(true)
         }

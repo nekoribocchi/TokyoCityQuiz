@@ -12,6 +12,7 @@ struct MainView: View {
     @State private var isShowQuiz = false
     @State private var isShowSetting = false
     @State private var isShowRanking = false
+    @State private var isShowHome = false
     @StateObject var quizViewModel =  QuizViewModel(questionCount: 3)
     @State private var animate = false
     private let scoreManager = ScoreManager()
@@ -94,7 +95,7 @@ struct MainView: View {
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

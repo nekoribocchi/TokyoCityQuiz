@@ -12,6 +12,7 @@ struct ScoreView: View {
     @State private var isShowQuiz = false
     @State private var isShowSetting = false
     @State private var isShowRanking = false
+    @State private var isShowHome = false
     @ObservedObject var quizViewModel : QuizViewModel
     private let scoreManager = ScoreManager()
     
@@ -61,6 +62,7 @@ struct ScoreView: View {
                             isFurigana: true,
                             furigana: "ほーむがめんへ",
                             action: {
+                                isShowHome = true
                                 quizViewModel.resetQuiz()
                             }
                         )
@@ -75,6 +77,9 @@ struct ScoreView: View {
         }
         .navigationDestination(isPresented: $isShowQuiz){
             QuizView(viewModel: quizViewModel)
+        }
+        .navigationDestination(isPresented: $isShowHome){
+            MainView()
         }
     }
 }
