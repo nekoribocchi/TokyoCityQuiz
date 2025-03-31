@@ -23,10 +23,17 @@ struct QuizView: View {
                             HStack {
                                 Spacer(minLength: 0)
                                 
+                                /*
                                 Image(viewModel.questions[viewModel.currentQuestionIndex].cityName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(maxWidth: 600)
+                                */
+                                Image("i")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 700)
+                                
                                 
                                 Spacer(minLength: 0)
                             }

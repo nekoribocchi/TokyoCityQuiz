@@ -14,7 +14,7 @@ struct MainView: View {
     @State private var isShowRanking = false
     @StateObject var quizViewModel =  QuizViewModel(questionCount: 3)
     private let scoreManager = ScoreManager()
-
+    
     
     var body: some View {
         NavigationStack {
@@ -23,10 +23,10 @@ struct MainView: View {
                     GradientBackground(startColor: .g_Orange, endColor: .g_Purple)
                     
                     RoundedBottomBar()
-               
+                    
                     VStack {
                         Spacer()
-                    
+                        
                         let buttonSize = geometry.size.width * 0.15
                         let spacing = geometry.size.width * 0.1
                         
@@ -34,17 +34,17 @@ struct MainView: View {
                             CustomCircleButton(action: {
                                 isShowSetting = true
                             }, size: buttonSize, icon: Image(systemName: "gearshape.fill"))
-
+                            
                             CustomCircleButton(action: {
                                 isShowQuiz = true
                             }, size: buttonSize, icon: Image(systemName: "gamecontroller.fill"))
-
+                            
                             CustomCircleButton(action: {
                                 isShowRanking = true
                             }, size: buttonSize, icon: Image(systemName: "medal.fill"))
                         }
                         .padding(.bottom, geometry.safeAreaInsets.bottom)
-
+                        
                     }
                     .navigationDestination(isPresented: $isShowRanking){
                         RankingView(scoreManager: scoreManager)
@@ -55,16 +55,49 @@ struct MainView: View {
                     .navigationDestination(isPresented: $isShowSetting){
                         SettingView(viewModel: QuizViewModel(questionCount: 10))
                     }
+                    
+                    
+                    Image("icon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 700)
+                    VStack{
+                        
+                        HStack{
+                            Spacer()
+                            VStack(spacing: 0) {
+                                ForEach(Array("クイズ"), id: \.self) { char in
+                                    Text(String(char))
+                                        .font(.system(size: 50, weight: .bold, design: .serif))
+                                        .foregroundColor(.r_Purple)
+                                }
+                            }
+                            
+                            VStack(spacing: 0) {
+                                ForEach(Array("都内区市町村"), id: \.self) { char in
+                                    Text(String(char))
+                                        .font(.system(size: 50, weight: .bold, design: .serif))
+                                        .foregroundColor(.r_Purple)
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                        .padding(80)
+                        Spacer()
+                    }
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
+            
         }
     }
 }
 
 
 #Preview {
-   
+    
     MainView()
 }
 
