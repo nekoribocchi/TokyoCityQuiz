@@ -13,6 +13,7 @@ struct MainView: View {
     @State private var isShowSetting = false
     @State private var isShowRanking = false
     @StateObject var quizViewModel =  QuizViewModel(questionCount: 3)
+    @State private var animate = false
     private let scoreManager = ScoreManager()
     
     
@@ -55,46 +56,47 @@ struct MainView: View {
                     .navigationDestination(isPresented: $isShowSetting){
                         SettingView(viewModel: QuizViewModel(questionCount: 10))
                     }
-                    
-                    
+                    let angle: Double = animate ? 3 : -3
+                    VStack{
+                        Text("とないくしちょうそん")
+                            .font(.potta(size: 20))
+                            .foregroundColor(.r_Purple)
+                            .lineLimit(nil)
+                            .padding(.top, 100)
+                        
+                        Text("都内区市町村")
+                            .font(.potta(size: 60))
+                            .foregroundColor(.r_Purple)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        Text("クイズ")
+                            .font(.potta(size: 60))
+                            .foregroundColor(.r_Purple)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        Spacer()
+                    }
+                    .rotationEffect(.degrees(angle))
+                    .onAppear {
+                        withAnimation(
+                            .easeInOut(duration: 0.9)
+                            .repeatForever(autoreverses: true)
+                        ) {
+                            animate.toggle()
+                        }
+                    }
                     Image("icon")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 700)
-                    VStack{
-                        
-                        HStack{
-                            Spacer()
-                            VStack(spacing: 0) {
-                                ForEach(Array("クイズ"), id: \.self) { char in
-                                    Text(String(char))
-                                        .font(.system(size: 50, weight: .bold, design: .serif))
-                                        .foregroundColor(.r_Purple)
-                                }
-                            }
-                            
-                            VStack(spacing: 0) {
-                                ForEach(Array("都内区市町村"), id: \.self) { char in
-                                    Text(String(char))
-                                        .font(.system(size: 50, weight: .bold, design: .serif))
-                                        .foregroundColor(.r_Purple)
-                                }
-                                
-                                
-                            }
-                            
-                        }
-                        .padding(80)
-                        Spacer()
-                    }
+                        .padding(.top,60)
+                        .edgesIgnoringSafeArea(.bottom)
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
-            
         }
     }
 }
-
 
 #Preview {
     
