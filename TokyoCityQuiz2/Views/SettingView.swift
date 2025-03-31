@@ -22,8 +22,10 @@ struct SettingView: View {
             .pickerStyle(SegmentedPickerStyle())
             
             Button("クイズを開始") {
+                // クイズ画面へ遷移
             }
         }
+        .navigationBarBackButtonHidden(true)
         .padding()
     }
 }

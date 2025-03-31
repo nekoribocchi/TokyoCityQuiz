@@ -16,11 +16,11 @@ struct TokyoCityQuiz2App: App {
         WindowGroup {
             
             if hasCompletedOnboarding {
-                MainView(quizViewModel: quizViewModel) // 通常の画面へ
+                MainView(quizViewModel: quizViewModel) 
             } else {
                 OnboardingView(onboardingCompleted: {
                     UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
-                    hasCompletedOnboarding = true // 画面を切り替える
+                    hasCompletedOnboarding.toggle()
                 })
             }
         }
