@@ -13,7 +13,6 @@ struct ScoreView: View {
     @State private var isShowSetting = false
     @State private var isShowRanking = false
     @State private var isShowHome = false
-    @State private var isFromScoreView = false
     @ObservedObject var quizViewModel : QuizViewModel
     private let scoreManager = ScoreManager()
     
@@ -54,7 +53,6 @@ struct ScoreView: View {
                             furigana: "すこあいちらんへ",
                             action: {
                                 isShowRanking = true
-                                isFromScoreView = true
                                 quizViewModel.resetQuiz()
                             }
                         )
@@ -75,7 +73,7 @@ struct ScoreView: View {
             .navigationBarBackButtonHidden(true)
         }
         .navigationDestination(isPresented: $isShowRanking){
-            RankingView(scoreManager: scoreManager, fromScoreView: $isFromScoreView)
+          RankingView(scoreManager: scoreManager)
         }
         .navigationDestination(isPresented: $isShowQuiz){
             QuizView(viewModel: quizViewModel)

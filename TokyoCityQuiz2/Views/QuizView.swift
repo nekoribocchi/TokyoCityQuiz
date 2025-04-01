@@ -58,7 +58,7 @@ struct QuizView: View {
                 }
             }
         }.navigationDestination(isPresented: $isShowHome){
-            MainView( isFromScoreView: $isFromScoreView)
+            MainView()
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
