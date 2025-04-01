@@ -13,7 +13,7 @@ struct MainView: View {
     @State private var isShowSetting = false
     @State private var isShowRanking = false
     @State private var isShowHome = false
-    @StateObject var quizViewModel =  QuizViewModel(questionCount: 3)
+    @StateObject var quizViewModel =  QuizViewModel(questionCount: 5)
     @State private var animate = false
     private let scoreManager = ScoreManager()
     @State private var isInQuiz = false
@@ -55,7 +55,7 @@ struct MainView: View {
                         QuizView(viewModel: quizViewModel)
                     }
                     .navigationDestination(isPresented: $isShowSetting){
-                        SettingView(viewModel: QuizViewModel(questionCount: 10))
+                        SettingView(quizViewModel: quizViewModel)
                     }
                     let angle: Double = animate ? 3 : -3
                     VStack{

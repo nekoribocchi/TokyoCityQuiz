@@ -74,7 +74,10 @@ class QuizViewModel: ObservableObject{
         generateQuestions()
     }
     
-    
+    func updateQuestionCount(_ count: Int) {
+        self.questionCount = count
+        self.generateQuestions()
+    }
 }
 
 

@@ -52,6 +52,3 @@ struct VolumeSliderView: View {
        }
 }
 
-#Preview {
-    SettingView(viewModel: QuizViewModel(questionCount: 2))
-}
