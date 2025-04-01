@@ -37,7 +37,7 @@ struct RankMark: View {
                         angle: .degrees(270)
                     )
                 )
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
             
             Image(systemName: "medal")
