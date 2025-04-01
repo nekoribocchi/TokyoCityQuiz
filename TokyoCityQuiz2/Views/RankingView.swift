@@ -30,7 +30,6 @@ struct RankingView: View {
             RoundRectangleView(heightRatio: 0.8) {
                 List {
                     ForEach(Array(scoreManager.getTopScores().prefix(10).enumerated()), id: \.offset) { index, score in
-                        
                         HStack {
                             if index < 3 {
                                 let medal: RankMark.Medal = {

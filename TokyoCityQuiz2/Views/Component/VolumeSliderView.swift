@@ -51,3 +51,7 @@ struct VolumeSliderView: View {
            .padding(.horizontal)
        }
 }
+
+#Preview {
+    SettingView(viewModel: QuizViewModel(questionCount: 2))
+}

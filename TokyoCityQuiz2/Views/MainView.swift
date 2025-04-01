@@ -13,7 +13,7 @@ struct MainView: View {
     @State private var isShowSetting = false
     @State private var isShowRanking = false
     @State private var isShowHome = false
-    @StateObject var quizViewModel =  QuizViewModel(questionCount: UserDefaults.standard.integer(forKey: "questionCount"))
+    @StateObject var quizViewModel =  QuizViewModel(questionCount: 3)
     @State private var animate = false
     private let scoreManager = ScoreManager()
     @State private var isInQuiz = false

@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct TokyoCityQuiz2App: App {
     @State private var hasCompletedOnboarding: Bool = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
-    @StateObject private var quizViewModel = QuizViewModel()
+    @StateObject private var quizViewModel = QuizViewModel(questionCount: 3)
     
     var body: some Scene {
         WindowGroup {
