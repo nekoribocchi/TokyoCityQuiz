@@ -47,11 +47,11 @@ struct RankingView: View {
                                 Spacer()
                                 Text ("\(score.date.formatted(.dateTime.locale(Locale(identifier: "ja_JP")).year().month().day().hour().minute()))")
                                     .font(.potta(size: 10))
-                                    .foregroundColor(.gray)
+
                             } else {
                                 Circle()
                                     .fill(Color.clear)
-                                    .frame(width: 24, height: 24)
+                                    .frame(width: 28, height: 28)
                                 Spacer()
                                 Text("\(score.score) 点")
                                     .font(.potta(size: 15))
@@ -59,7 +59,7 @@ struct RankingView: View {
                                 Spacer()
                                 Text ("\(score.date.formatted(.dateTime.locale(Locale(identifier: "ja_JP")).year().month().day().hour().minute()))")
                                     .font(.potta(size: 8))
-                                    .foregroundColor(.gray)
+      
                             }
                             
 

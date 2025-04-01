@@ -17,6 +17,7 @@ class QuizViewModel: ObservableObject{
     @Published var isQuizFinished: Bool = false
     @Published var scoreHistory: [Score] = []
     @Published var questionCount: Int
+    @Published var lastScore: Score? = nil
     private let scoreManager = ScoreManager()
     private let cityDataProvider = CityDataProvider.shared
     
@@ -61,7 +62,8 @@ class QuizViewModel: ObservableObject{
     
     func finishQuiz(){
         isQuizFinished = true
-        scoreManager.save(score: score)
+        lastScore = Score(date: Date(), score: scoreManager.calculateScore(score: score, questionCount: questionCount))
+        scoreManager.save(score: score,questionCount: questionCount)
     }
     
     func resetQuiz(){

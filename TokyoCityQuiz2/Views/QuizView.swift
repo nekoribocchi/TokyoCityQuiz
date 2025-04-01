@@ -25,14 +25,8 @@ struct QuizView: View {
                             VStack{
                                 HStack {
                                     Spacer(minLength: 0)
-                                    
-                                    /*
-                                     Image(viewModel.questions[viewModel.currentQuestionIndex].cityName)
-                                     .resizable()
-                                     .aspectRatio(contentMode: .fit)
-                                     .frame(maxWidth: 600)
-                                     */
-                                    Image("i")
+ 
+                                    Image("\(viewModel.questions[viewModel.currentQuestionIndex].cityName)")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(maxWidth: 700)
@@ -41,10 +35,6 @@ struct QuizView: View {
                                 }
                                 .padding(.horizontal, UIScreen.main.bounds.width / 15)
                                 
-                                //                            Text(viewModel.questions[viewModel.currentQuestionIndex].cityName)
-                                //                                .font(.title)
-                                //                                .padding()
-                                //
                                 ForEach(0..<4) { index in
                                     ButtonBase.simple(title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
                                                       backgroundColor: .white,

@@ -27,7 +27,7 @@ struct ScoreView: View {
                         
                         CircleGradientView(content: {
                             VStack{
-                                Text("30点")
+                                Text("\(quizViewModel.lastScore?.score ?? 0)点")
                                     .font(.potta(size: 60))
                                 
                                 Text("その調子！")

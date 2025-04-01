@@ -6,18 +6,25 @@
 //
 
 import Foundation
+import SwiftUICore
  
-class ScoreManager {
+struct ScoreManager {
 private let key = "scoreHistory"
     
-    func save(score: Int){
+    func save(score: Int, questionCount: Int){
         var history = load()
-        let newScore = Score(date: Date(), score: score)
+        let newScore = Score(date: Date(), score: calculateScore(score: score, questionCount: questionCount))
         history.append(newScore)
 
         if let encoded = try? JSONEncoder().encode(history) {
             UserDefaults.standard.set(encoded, forKey: key)
         }
+    }
+    
+    func calculateScore(score: Int, questionCount: Int) -> Int{
+        var finalScore: Int
+        finalScore = Int((Double(score) / Double(questionCount) * 100).rounded())
+        return finalScore
     }
     
     func load() -> [Score]{
