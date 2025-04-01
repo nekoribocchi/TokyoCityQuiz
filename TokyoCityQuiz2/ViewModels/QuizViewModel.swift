@@ -7,6 +7,8 @@
 
 
 import Foundation
+import UIKit
+import SwiftUICore
 
 class QuizViewModel: ObservableObject{
     @Published var questions: [Question] = []
@@ -16,13 +18,12 @@ class QuizViewModel: ObservableObject{
     @Published var answerHistory: [Int] = []
     @Published var isQuizFinished: Bool = false
     @Published var scoreHistory: [Score] = []
-    @Published var questionCount: Int
     @Published var lastScore: Score? = nil
+    @State var questionCount: Int = UserDefaults.standard.integer(forKey: "questionCount")
     private let scoreManager = ScoreManager()
     private let cityDataProvider = CityDataProvider.shared
     
-    init(questionCount: Int){
-        self.questionCount = questionCount
+    init(){
         self.scoreHistory = scoreManager.load()
         self.generateQuestions()
     }
