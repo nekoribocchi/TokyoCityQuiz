@@ -18,6 +18,7 @@ class QuizViewModel: ObservableObject{
     @Published var scoreHistory: [Score] = []
     @Published var questionCount: Int
     private let scoreManager = ScoreManager()
+    private let cityDataProvider = CityDataProvider.shared
     
     init(questionCount: Int){
         self.questionCount = questionCount
@@ -26,18 +27,11 @@ class QuizViewModel: ObservableObject{
     }
     
     func generateQuestions(){
-        let cityData = [
-            "八王子市", "立川市", "武蔵野市", "三鷹市", "青梅市", "府中市", "昭島市", "調布市", "町田市", "小金井市",
-            "小平市", "日野市", "東村山市", "国分寺市", "国立市", "福生市", "狛江市", "東大和市", "清瀬市", "東久留米市",
-            "武蔵村山市", "多摩市", "稲城市", "羽村市", "あきる野市", "西東京市", "瑞穂町", "日の出町", "檜原村", "奥多摩町",
-            "千代田区", "中央区", "港区", "新宿区", "文京区", "台東区", "墨田区", "江東区", "品川区", "目黒区", "大田区",
-            "世田谷区", "渋谷区", "中野区", "杉並区", "豊島区", "北区", "荒川区", "板橋区", "練馬区", "足立区", "葛飾区", "江戸川区"
-        ]
-        
+        let cityName = Array(cityDataProvider.cityData.keys)
         var allQuestions: [Question] = []
         
-        for city in cityData.shuffled().prefix(questionCount){
-            let options = Array(cityData.shuffled().prefix(4))
+        for city in cityName.shuffled().prefix(questionCount){
+            let options = Array(cityName.shuffled().prefix(4))
             
             let correctAnswerIndex = Int.random(in: 0..<4)
             

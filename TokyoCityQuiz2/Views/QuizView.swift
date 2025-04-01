@@ -11,6 +11,7 @@ struct QuizView: View {
     @ObservedObject var viewModel: QuizViewModel
     @State var isShowHome: Bool = false
     let scoreManager = ScoreManager()
+    let cityDataProvider = CityDataProvider.shared
     
     var body: some View {
         NavigationStack{
@@ -50,7 +51,7 @@ struct QuizView: View {
                                                       textColor: .r_Purple,
                                                       font: "PottaOne-Regular",
                                                       isFurigana: true,
-                                                      furigana: "ふりがな",
+                                                      furigana: cityDataProvider.furigana(for:viewModel.questions[viewModel.currentQuestionIndex].options[index] ) ?? "",
                                                       action: {
                                         viewModel.selectAnswer(index: index)
                                     })
