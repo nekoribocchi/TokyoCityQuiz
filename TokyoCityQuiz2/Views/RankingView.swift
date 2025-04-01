@@ -9,6 +9,7 @@ import SwiftUI
 import GlassmorphismUI
 
 struct RankingView: View {
+<<<<<<< HEAD
     let scoreManager: ScoreManager
     
     enum Medal {
@@ -22,6 +23,10 @@ struct RankingView: View {
             }
         }
     }
+=======
+    let scoreManager:ScoreManager
+    @Binding var fromScoreView: Bool
+>>>>>>> parent of 17535f4 (Revert "Temporay commit")
     
     var body: some View {
         ZStack {
@@ -76,8 +81,15 @@ struct RankingView: View {
         }
         .navigationBarBackButtonHidden(true)
     }
+<<<<<<< HEAD
 }
 
 #Preview {
     RankingView(scoreManager: ScoreManager())
 }
+=======
+//
+//#Preview {
+//    RankingView(scoreManager: ScoreManager(), fromScoreView: true)
+//}
+>>>>>>> parent of 17535f4 (Revert "Temporay commit")
