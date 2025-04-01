@@ -72,7 +72,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         QuizView(
-            viewModel: QuizViewModel(questionCount: 3)
+            viewModel: QuizViewModel()
         )
     }
 }

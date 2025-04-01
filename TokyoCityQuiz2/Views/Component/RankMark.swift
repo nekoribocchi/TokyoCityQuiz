@@ -40,10 +40,10 @@ struct RankMark: View {
                 .frame(width: 40, height: 40)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
             
-            Image(systemName: "medal")
-                .font(.system(size: 20, weight: .bold))
-                .foregroundColor(.white)
-        }
+//            Image(systemName: "medal")
+//                .font(.system(size: 20, weight: .bold))
+//                .foregroundColor(.white)
+                    }
     }
 }
 

@@ -8,22 +8,6 @@
 import SwiftUI
 import GlassmorphismUI
 
-class SettingViewModel: ObservableObject {
-    @Published var questionCount: Int {
-        didSet {
-            UserDefaults.standard.set(questionCount, forKey: "questionCount")
-        }
-    }
-    
-    init() {
-        self.questionCount = UserDefaults.standard.integer(forKey: "questionCount")
-        if self.questionCount == 0 {
-                    self.questionCount = 5
-                }
-    }
-}
-
-
 struct SettingView: View {
     @ObservedObject var quizViewModel: QuizViewModel
     @State var isShowQuiz: Bool = false
@@ -45,8 +29,11 @@ struct SettingView: View {
                         Picker("問題数", selection: $settingViewModel.questionCount) {
                             ForEach(sumQuestion, id: \.self) { count in
                                 Text("\(count)問")
-                                
                             }
+                        }
+                        .onChange(of: settingViewModel.questionCount, initial: true){ oldValue, newValue in
+                            print("新しい値に変わった　old :\(oldValue) new:\(newValue)")
+                            quizViewModel.updateQuestionCount(newValue)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.bottom, 15)
@@ -75,14 +62,10 @@ struct SettingView: View {
         .navigationDestination(isPresented: $isShowQuiz){
             QuizView(viewModel: quizViewModel)
         }
+//        .onDisappear(){
+//            quizViewModel.updateQuestionCount(settingViewModel.questionCount)
+//        }
     }
 }
 
 
-
-#Preview {
-    let settingViewModel = SettingViewModel()
-    let quizViewModel = QuizViewModel(questionCount: settingViewModel.questionCount)
-    return SettingView(quizViewModel: quizViewModel)
-        .environmentObject(settingViewModel)
-}

@@ -18,13 +18,22 @@ class QuizViewModel: ObservableObject{
     @Published var scoreHistory: [Score] = []
     @Published var questionCount: Int
     @Published var lastScore: Score? = nil
+    
     private let scoreManager = ScoreManager()
     private let cityDataProvider = CityDataProvider.shared
     
-    init(questionCount: Int){
-        self.questionCount = questionCount
+    init(){
+        self.questionCount = UserDefaults.standard.integer(forKey: "questionCount")
         self.scoreHistory = scoreManager.load()
         self.generateQuestions()
+    }
+    
+    func startNewQuiz(){
+        score = 0
+        currentQuestionIndex = 0
+        answerHistory = []
+        isQuizFinished =  false
+        generateQuestions()
     }
     
     func generateQuestions(){
@@ -66,17 +75,9 @@ class QuizViewModel: ObservableObject{
         scoreManager.save(score: score,questionCount: questionCount)
     }
     
-    func resetQuiz(){
-        score = 0
-        currentQuestionIndex = 0
-        answerHistory = []
-        isQuizFinished = false
-        generateQuestions()
-    }
-    
     func updateQuestionCount(_ count: Int) {
         self.questionCount = count
-        self.generateQuestions()
+        startNewQuiz()
     }
 }
 

@@ -42,7 +42,7 @@ struct ScoreView: View {
                             furigana: "りぷれい",
                             action: {
                                 isShowQuiz = true
-                                quizViewModel.resetQuiz()
+                                quizViewModel.startNewQuiz()
                             }
                         )
                         
@@ -53,7 +53,7 @@ struct ScoreView: View {
                             furigana: "すこあいちらんへ",
                             action: {
                                 isShowRanking = true
-                                quizViewModel.resetQuiz()
+                                quizViewModel.startNewQuiz()
                             }
                         )
                         ButtonBase.simple(
@@ -63,7 +63,7 @@ struct ScoreView: View {
                             furigana: "ほーむがめんへ",
                             action: {
                                 isShowHome = true
-                                quizViewModel.resetQuiz()
+                                quizViewModel.startNewQuiz()
                             }
                         )
                         
@@ -85,5 +85,5 @@ struct ScoreView: View {
 }
 
 #Preview {
-    ScoreView(quizViewModel: QuizViewModel(questionCount: 3))
+    ScoreView(quizViewModel: QuizViewModel())
 }

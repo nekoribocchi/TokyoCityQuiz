@@ -17,7 +17,7 @@ struct TokyoCityQuiz2App: App {
         // SettingViewModelを先に生成してquestionCountを取得
         let settingVM = SettingViewModel()
         _settingViewModel = StateObject(wrappedValue: settingVM)
-        _quizViewModel = StateObject(wrappedValue: QuizViewModel(questionCount: settingVM.questionCount))
+        _quizViewModel = StateObject(wrappedValue: QuizViewModel())
     }
 
     var body: some Scene {
