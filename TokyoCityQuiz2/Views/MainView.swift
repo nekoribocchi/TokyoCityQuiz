@@ -83,7 +83,7 @@ struct MainView: View {
                             .easeInOut(duration: 0.9)
                             .repeatForever(autoreverses: true)
                         ) {
-                            animate.toggle()
+                           // animate.toggle()
                         }
                     }
                     Image("icon")

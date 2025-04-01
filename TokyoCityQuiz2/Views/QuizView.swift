@@ -52,6 +52,7 @@ struct QuizView: View {
                         }
                         BackButton{
                             isShowHome = true
+                            viewModel.startNewQuiz()
                         }
                         
                     }

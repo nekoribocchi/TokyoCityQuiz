@@ -77,6 +77,7 @@ class QuizViewModel: ObservableObject{
     
     func updateQuestionCount(_ count: Int) {
         self.questionCount = count
+        print("updateQuestionCount |\(questionCount)")
         startNewQuiz()
     }
 }

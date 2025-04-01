@@ -9,7 +9,7 @@ import SwiftUI
 import GlassmorphismUI
 
 struct SettingView: View {
-    @ObservedObject var quizViewModel: QuizViewModel
+    @State var quizViewModel: QuizViewModel
     @State var isShowQuiz: Bool = false
     @State private var volume: Double = 0.5
     @EnvironmentObject var settingViewModel: SettingViewModel
@@ -33,6 +33,7 @@ struct SettingView: View {
                         }
                         .onChange(of: settingViewModel.questionCount, initial: true){ oldValue, newValue in
                             print("新しい値に変わった　old :\(oldValue) new:\(newValue)")
+                            print(UserDefaults.standard.integer(forKey: "questionCount"))
                             quizViewModel.updateQuestionCount(newValue)
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -48,7 +49,7 @@ struct SettingView: View {
                         Spacer()
                         ButtonBase.simple(title: "遊ぶ", font: "PottaOne-Regular", isFurigana: true, furigana: "あそぶ") {
                             isShowQuiz = true
-                            quizViewModel.updateQuestionCount(settingViewModel.questionCount)
+                            quizViewModel = QuizViewModel()
                         }
                     }
                     
@@ -59,13 +60,15 @@ struct SettingView: View {
             }
             
         }
-        .navigationDestination(isPresented: $isShowQuiz){
+        .navigationDestination(isPresented: $isShowQuiz) {
             QuizView(viewModel: quizViewModel)
         }
-//        .onDisappear(){
-//            quizViewModel.updateQuestionCount(settingViewModel.questionCount)
-//        }
+        
+        
     }
+    
+    //        .onDisappear(){
+    //            quizViewModel.updateQuestionCount(settingViewModel.questionCount)
+    //        }
 }
-
 
