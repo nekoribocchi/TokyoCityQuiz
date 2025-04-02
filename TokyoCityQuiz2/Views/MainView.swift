@@ -89,6 +89,7 @@ struct MainView: View {
                                 }
                                 hasAnimated = true
                             }
+                            BGMPlayer.shared.playBackgroundMusic()
                         }
                     Image("icon")
                         .resizable()
@@ -101,6 +102,7 @@ struct MainView: View {
             }
         }.navigationBarBackButtonHidden(true)
     }
+    
 }
 
 #Preview {

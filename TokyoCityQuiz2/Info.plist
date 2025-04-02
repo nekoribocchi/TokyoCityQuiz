@@ -6,5 +6,9 @@
 	<array>
 		<string>PottaOne-Regular.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>p.mp3</string>
+	</array>
 </dict>
 </plist>
