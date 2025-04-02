@@ -33,6 +33,7 @@ class QuizViewModel: ObservableObject{
         currentQuestionIndex = 0
         answerHistory = []
         isQuizFinished =  false
+        questionCount = UserDefaults.standard.integer(forKey: "questionCount")
         generateQuestions()
     }
     

@@ -62,11 +62,7 @@ struct QuizView: View {
             MainView()
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            if viewModel.questions.isEmpty {
-                viewModel.generateQuestions()
-            }
-        }
+       
     }
 }
 

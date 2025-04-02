@@ -38,6 +38,7 @@ struct MainView: View {
                             }, size: buttonSize, icon: Image(systemName: "gearshape.fill"))
                             
                             CustomCircleButton(action: {
+                                quizViewModel.startNewQuiz()
                                 isShowQuiz = true
                             }, size: buttonSize, icon: Image(systemName: "gamecontroller.fill"))
                             
