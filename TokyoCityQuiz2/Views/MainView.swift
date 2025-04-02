@@ -14,6 +14,7 @@ struct MainView: View {
     @State private var isShowRanking = false
     @State private var isShowHome = false
     @State private var animate = false
+    @State private var hasAnimated = false
     @StateObject var quizViewModel =  QuizViewModel()
     private let scoreManager = ScoreManager()
     
@@ -57,35 +58,38 @@ struct MainView: View {
                     .navigationDestination(isPresented: $isShowSetting){
                         SettingView(quizViewModel: quizViewModel)
                     }
-                    let angle: Double = animate ? 3 : -3
-                    VStack{
-                        Text("とないくしちょうそん")
-                            .font(.potta(size: 20))
-                            .foregroundColor(.white)
-                            .lineLimit(nil)
-                            .padding(.top, 100)
-                        
-                        Text("都内区市町村")
-                            .font(.potta(size: 60))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        
-                        Text("クイズ")
-                            .font(.potta(size: 60))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        
-                        Spacer()
-                    }
-                    .rotationEffect(.degrees(angle))
-                    .onAppear {
-                        withAnimation(
-                            .easeInOut(duration: 0.9)
-                            .repeatForever(autoreverses: true)
-                        ) {
-                           animate.toggle()
+                    let angle: Double = animate ? 1 : -1
+                        VStack{
+                            Text("とないくしちょうそん")
+                                .font(.potta(size: 20))
+                                .foregroundColor(.white)
+                                .lineLimit(nil)
+                                .padding(.top, 100)
+                            
+                            Text("都内区市町村")
+                                .font(.potta(size: 60))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            Text("クイズ")
+                                .font(.potta(size: 60))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            Spacer()
                         }
-                    }
+                        .rotationEffect(.degrees(angle))
+                        .task {
+                            if !hasAnimated{
+                                withAnimation(
+                                    .easeInOut(duration: 0.7)
+                                    .repeatForever(autoreverses: true)
+                                ) {
+                                    animate.toggle()
+                                }
+                                hasAnimated = true
+                            }
+                        }
                     Image("icon")
                         .resizable()
                         .scaledToFit()
