@@ -23,11 +23,10 @@ class BGMPlayer {
             try AVAudioSession.sharedInstance().setActive(true)
 
             player = try AVAudioPlayer(contentsOf: url)
-            player?.numberOfLoops = -1 // 無限ループ
+            player?.numberOfLoops = -1
             player?.prepareToPlay()
             player?.volume = Float(UserDefaults.standard.double(forKey: "bgmVolume"))
             player?.play()
-
             print("✅ 音楽再生スタート！")
         } catch {
             print("❌ 音楽再生に失敗: \(error)")

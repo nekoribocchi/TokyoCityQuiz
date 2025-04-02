@@ -25,7 +25,11 @@ struct RankingView: View {
     
     var body: some View {
         ZStack {
-            RoundedTopBar(text: "スコア一覧", isGradient: true)
+            RoundedTopBar(isGradient: true){
+                Text("スコア一覧")
+                    .font(.potta(size: 30))
+                    .foregroundColor(.white)
+            }
             
             RoundRectangleView(heightRatio: 0.8) {
                 List {

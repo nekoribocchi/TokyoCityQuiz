@@ -18,7 +18,11 @@ struct SettingView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                RoundedTopBar(text: "設定", isGradient: true)
+                RoundedTopBar(isGradient: true){
+                    Text("設定")
+                        .font(.potta(size: 30))
+                        .foregroundColor(.white)
+                }
                 BackButton()
                 RoundRectangleView(heightRatio: 0.8){
                     
@@ -60,7 +64,7 @@ struct SettingView: View {
                     }
                 }
                 .navigationBarBackButtonHidden(true)
-                .padding()
+      
             }
         }
         .navigationDestination(isPresented: $isShowQuiz) {
@@ -68,4 +72,10 @@ struct SettingView: View {
         }
     }
 }
-
+#Preview {
+    let quizViewModel = QuizViewModel()
+    let settingViewModel = SettingViewModel()
+    
+    SettingView(quizViewModel: quizViewModel)
+        .environmentObject(settingViewModel)
+}

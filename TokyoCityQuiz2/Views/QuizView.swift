@@ -21,7 +21,16 @@ struct QuizView: View {
                     ScoreView(quizViewModel: viewModel)
                 } else {
                     ZStack{
-                        RoundedTopBar(text: "第\(viewModel.currentQuestionIndex + 1) 問 /  \(viewModel.questionCount)問中", isGradient: true)
+                        RoundedTopBar(isGradient: true){
+                            VStack{
+                                Text("第\(viewModel.currentQuestionIndex + 1)問")
+                                    .font(.potta(size: 25))
+                                    .foregroundColor(.white)
+                                Text("\(viewModel.questionCount)問中")
+                                    .foregroundColor(.white)
+                                    .font(.potta(size: 15))
+                            }
+                        }
                         RoundRectangleView(heightRatio: 0.85){
                             VStack{
                                 HStack {

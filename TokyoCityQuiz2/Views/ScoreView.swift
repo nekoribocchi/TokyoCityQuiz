@@ -20,7 +20,11 @@ struct ScoreView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                RoundedTopBar(text: "今回のスコア", isGradient: true)
+                RoundedTopBar(isGradient: true){
+                    Text("今回のスコア")
+                        .font(.potta(size: 30))
+                        .foregroundColor(.white)
+                }
                 
                 RoundRectangleView(heightRatio: 0.8){
                     VStack{

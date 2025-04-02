@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct VolumeSliderView: View {
-    @Binding var value: Double  // 0.0〜1.0 の範囲
-       
+    @Binding var value: Double
+    
        var body: some View {
            GeometryReader { geometry in
                let sliderWidth = geometry.size.width
@@ -32,7 +32,6 @@ struct VolumeSliderView: View {
                        )
                        .frame(width: progressWidth, height: 8)
                    
-                   // ドラッグ可能なハンドル
                    Circle()
                        .fill(Color.white)
                        .frame(width: 30, height: 30)
