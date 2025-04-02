@@ -10,7 +10,7 @@ import GlassmorphismUI
 struct QuizView: View {
     @ObservedObject var viewModel: QuizViewModel
     @State var isShowHome: Bool = false
-
+    
     let scoreManager = ScoreManager()
     let cityDataProvider = CityDataProvider.shared
     
@@ -33,9 +33,13 @@ struct QuizView: View {
                         }
                         RoundRectangleView(heightRatio: 0.85){
                             VStack{
+                                Text("この区市町村はどこ？")
+                                    .foregroundColor(.r_Purple)
+                                    .font(.potta(size: 15))
+                                
                                 HStack {
                                     Spacer(minLength: 0)
- 
+                                    
                                     Image("\(viewModel.questions[viewModel.currentQuestionIndex].cityName)")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -44,16 +48,18 @@ struct QuizView: View {
                                     Spacer(minLength: 0)
                                 }
                                 .padding(.horizontal, UIScreen.main.bounds.width / 15)
+                                QuizProgressSliderView(progress: Double(viewModel.currentQuestionIndex + 1) / Double(viewModel.questionCount))
+                                    .padding(.top, 10)
                                 
                                 ForEach(0..<4) { index in
                                     ButtonBase.icon( title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
-                                                      backgroundColor: viewModel.getButtonColor(for: index),
-                                                      textColor: viewModel.getButtonFontColor(for: index),
-                                                      font: "PottaOne-Regular",
-                                                      isFurigana: true,
-                                                      furigana: cityDataProvider.furigana(for:viewModel.questions[viewModel.currentQuestionIndex].options[index] ) ?? "",
+                                                     backgroundColor: viewModel.getButtonColor(for: index),
+                                                     textColor: viewModel.getButtonFontColor(for: index),
+                                                     font: "PottaOne-Regular",
+                                                     isFurigana: true,
+                                                     furigana: cityDataProvider.furigana(for:viewModel.questions[viewModel.currentQuestionIndex].options[index] ) ?? "",
                                                      iconName:viewModel.getButtonIcon(for: index) ?? "",
-                                                      action: {
+                                                     action: {
                                         viewModel.selectAnswer(index: index)
                                         viewModel.isAnswerSubmitted = true
                                     })
@@ -66,8 +72,8 @@ struct QuizView: View {
                             viewModel.resetQuiz()
                         }
                         
-                            if viewModel.isAnswerSubmitted{
-                                NextQuizButton{
+                        if viewModel.isAnswerSubmitted{
+                            NextQuizButton{
                                 viewModel.goToNextQuestion()
                             }
                         }
@@ -78,7 +84,7 @@ struct QuizView: View {
             MainView()
         }
         .navigationBarBackButtonHidden(true)
-       
+        
     }
 }
 
@@ -86,8 +92,13 @@ struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = QuizViewModel()
         viewModel.questions = [
-            Question(cityName: "渋谷区", imageName: "渋谷区", options: ["渋谷区", "新宿区", "港区", "千代田区"], correctAnswerIndex: 0)
+            Question(cityName: "渋谷区", imageName: "渋谷区", options: ["渋谷区", "新宿区", "港区", "千代田区"], correctAnswerIndex: 0),
+            Question(cityName: "新宿区", imageName: "新宿区", options: ["渋谷区", "新宿区", "港区", "千代田区"], correctAnswerIndex: 1),
+            Question(cityName: "港区", imageName: "港区", options: ["渋谷区", "新宿区", "港区", "千代田区"], correctAnswerIndex: 2),
+            Question(cityName: "千代田区", imageName: "千代田区", options: ["渋谷区", "新宿区", "港区", "千代田区"], correctAnswerIndex: 3)
         ]
+        viewModel.currentQuestionIndex = 1
+        viewModel.questionCount = viewModel.questions.count
         return QuizView(viewModel: viewModel)
     }
 }
