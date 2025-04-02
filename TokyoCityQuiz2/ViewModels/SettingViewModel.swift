@@ -16,8 +16,5 @@ class SettingViewModel: ObservableObject {
     
     init() {
         self.questionCount = UserDefaults.standard.integer(forKey: "questionCount")
-        if self.questionCount == 0 {
-                    self.questionCount = 5
-                }
     }
 }

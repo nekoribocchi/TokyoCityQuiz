@@ -52,23 +52,14 @@ struct SettingView: View {
                             quizViewModel = QuizViewModel()
                         }
                     }
-                    
-                    
                 }
                 .navigationBarBackButtonHidden(true)
                 .padding()
             }
-            
         }
         .navigationDestination(isPresented: $isShowQuiz) {
             QuizView(viewModel: quizViewModel)
         }
-        
-        
     }
-    
-    //        .onDisappear(){
-    //            quizViewModel.updateQuestionCount(settingViewModel.questionCount)
-    //        }
 }
 

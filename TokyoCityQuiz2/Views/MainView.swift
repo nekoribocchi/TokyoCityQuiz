@@ -13,10 +13,9 @@ struct MainView: View {
     @State private var isShowSetting = false
     @State private var isShowRanking = false
     @State private var isShowHome = false
-    @StateObject var quizViewModel =  QuizViewModel()
     @State private var animate = false
+    @StateObject var quizViewModel =  QuizViewModel()
     private let scoreManager = ScoreManager()
-    @State private var isInQuiz = false
     
     var body: some View {
         NavigationStack {
@@ -84,7 +83,7 @@ struct MainView: View {
                             .easeInOut(duration: 0.9)
                             .repeatForever(autoreverses: true)
                         ) {
-                           // animate.toggle()
+                           animate.toggle()
                         }
                     }
                     Image("icon")
@@ -101,7 +100,6 @@ struct MainView: View {
 }
 
 #Preview {
-    
     MainView()
 }
 

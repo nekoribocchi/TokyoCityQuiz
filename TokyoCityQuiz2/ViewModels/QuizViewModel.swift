@@ -29,12 +29,16 @@ class QuizViewModel: ObservableObject{
     }
     
     func startNewQuiz(){
+        resetQuiz()
+        questionCount = UserDefaults.standard.integer(forKey: "questionCount")
+        generateQuestions()
+    }
+    
+    func resetQuiz(){
         score = 0
         currentQuestionIndex = 0
         answerHistory = []
         isQuizFinished =  false
-        questionCount = UserDefaults.standard.integer(forKey: "questionCount")
-        generateQuestions()
     }
     
     func generateQuestions(){
@@ -79,7 +83,6 @@ class QuizViewModel: ObservableObject{
     func updateQuestionCount(_ count: Int) {
         self.questionCount = count
         print("updateQuestionCount |\(questionCount)")
-        startNewQuiz()
     }
 }
 
