@@ -44,6 +44,12 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "speaker.fill")
                             VolumeSliderView(value: $volume)
+                                .onChange(of: volume) { oldValue, newValue in
+                                    UserDefaults.standard.set(newValue, forKey: "bgmVolume")
+                                    BGMPlayer.shared.setVolume(newValue)
+                                    print("音量を保存しました: \(newValue)")
+                                }
+
                             Image(systemName: "speaker.wave.3.fill")
                         }
                         Spacer()

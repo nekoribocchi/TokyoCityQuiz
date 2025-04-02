@@ -25,6 +25,7 @@ class BGMPlayer {
             player = try AVAudioPlayer(contentsOf: url)
             player?.numberOfLoops = -1 // 無限ループ
             player?.prepareToPlay()
+            player?.volume = Float(UserDefaults.standard.double(forKey: "bgmVolume"))
             player?.play()
 
             print("✅ 音楽再生スタート！")
@@ -36,4 +37,9 @@ class BGMPlayer {
     func stopBackgroundMusic() {
         player?.stop()
     }
+    
+    func setVolume(_ volume: Double) {
+            player?.volume = Float(volume)
+            UserDefaults.standard.set(volume, forKey: "bgmVolume")
+        }
 }

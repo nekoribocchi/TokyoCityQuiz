@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct PickerView: View {
+    @State private var volume: Double = {
+        let savedVolume = UserDefaults.standard.double(forKey: "bgmVolume")
+        return savedVolume == 0.0 ? 0.5 : savedVolume
+    }()
+
     @Binding var selected: Int
     let options: [Int]
     
