@@ -10,6 +10,7 @@ import GlassmorphismUI
 struct QuizView: View {
     @ObservedObject var viewModel: QuizViewModel
     @State var isShowHome: Bool = false
+
     let scoreManager = ScoreManager()
     let cityDataProvider = CityDataProvider.shared
     
@@ -36,17 +37,18 @@ struct QuizView: View {
                                 .padding(.horizontal, UIScreen.main.bounds.width / 15)
                                 
                                 ForEach(0..<4) { index in
-                                    ButtonBase.simple(title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
-                                                      backgroundColor: .white,
-                                                      textColor: .r_Purple,
+                                    ButtonBase.icon( title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
+                                                      backgroundColor: viewModel.getButtonColor(for: index),
+                                                      textColor: viewModel.getButtonFontColor(for: index),
                                                       font: "PottaOne-Regular",
                                                       isFurigana: true,
                                                       furigana: cityDataProvider.furigana(for:viewModel.questions[viewModel.currentQuestionIndex].options[index] ) ?? "",
+                                                     iconName:viewModel.getButtonIcon(for: index) ?? "",
                                                       action: {
                                         viewModel.selectAnswer(index: index)
+                                        viewModel.isAnswerSubmitted = true
                                     })
                                     .padding(5)
-                                    
                                 }
                             }
                         }
@@ -55,6 +57,11 @@ struct QuizView: View {
                             viewModel.resetQuiz()
                         }
                         
+                            if viewModel.isAnswerSubmitted{
+                                NextQuizButton{
+                                viewModel.goToNextQuestion()
+                            }
+                        }
                     }
                 }
             }
@@ -68,8 +75,11 @@ struct QuizView: View {
 
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
-        QuizView(
-            viewModel: QuizViewModel()
-        )
+        let viewModel = QuizViewModel()
+        viewModel.questions = [
+            Question(cityName: "渋谷区", imageName: "渋谷区", options: ["渋谷区", "新宿区", "港区", "千代田区"], correctAnswerIndex: 0)
+        ]
+        return QuizView(viewModel: viewModel)
     }
 }
+

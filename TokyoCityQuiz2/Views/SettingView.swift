@@ -32,7 +32,7 @@ struct SettingView: View {
                             }
                         }
                         .onChange(of: settingViewModel.questionCount, initial: true){ oldValue, newValue in
-                            print("新しい値に変わった　old :\(oldValue) new:\(newValue)")
+                            print("新しい値に変わったよ！old:\(oldValue) new:\(newValue)")
                             print(UserDefaults.standard.integer(forKey: "questionCount"))
                             quizViewModel.updateQuestionCount(newValue)
                         }
@@ -47,7 +47,7 @@ struct SettingView: View {
                                 .onChange(of: volume) { oldValue, newValue in
                                     UserDefaults.standard.set(newValue, forKey: "bgmVolume")
                                     BGMPlayer.shared.setVolume(newValue)
-                                    print("音量を保存しました: \(newValue)")
+                                    print("音量を保存したよ！: \(newValue)")
                                 }
 
                             Image(systemName: "speaker.wave.3.fill")

@@ -7,6 +7,7 @@
 
 
 import Foundation
+import SwiftUICore
 
 class QuizViewModel: ObservableObject{
     @Published var questions: [Question] = []
@@ -18,6 +19,7 @@ class QuizViewModel: ObservableObject{
     @Published var scoreHistory: [Score] = []
     @Published var questionCount: Int
     @Published var lastScore: Score? = nil
+    @Published var isAnswerSubmitted: Bool = false
     
     private let scoreManager = ScoreManager()
     private let cityDataProvider = CityDataProvider.shared
@@ -61,6 +63,10 @@ class QuizViewModel: ObservableObject{
     }
     
     func selectAnswer(index: Int){
+        if isAnswerSubmitted {
+            return
+        }
+        
         selectedAnswerIndex = index
         answerHistory.append(index)
         
@@ -68,8 +74,58 @@ class QuizViewModel: ObservableObject{
             score += 1
         }
         
+        isAnswerSubmitted = true
+    }
+    
+    func getButtonColor(for index: Int)  -> Color{
+        guard isAnswerSubmitted else {
+            return .white
+        }
+        
+        let correct = questions[currentQuestionIndex].correctAnswerIndex
+        
+        if index == correct {
+            return .r_Orange
+        }else if index == selectedAnswerIndex {
+            return .r_Purple
+        }else{
+            return .white
+        }
+    }
+    
+    func getButtonFontColor(for index: Int)  -> Color{
+        guard isAnswerSubmitted else {
+            return .r_Purple
+        }
+        
+        let correct = questions[currentQuestionIndex].correctAnswerIndex
+        
+        if index == correct || index == selectedAnswerIndex {
+            return .white
+        }else{
+            return .r_Purple
+        }
+    }
+    
+    func getButtonIcon(for index: Int) -> String? {
+        guard isAnswerSubmitted else {
+            return ""
+        }
+        
+        let correct = questions[currentQuestionIndex].correctAnswerIndex
+        if index == correct {
+            return "checkmark"
+        }else if index == selectedAnswerIndex {
+            return "xmark"
+        }else{
+            return nil
+        }
+    }
+    func goToNextQuestion(){
+        selectedAnswerIndex = nil
+        isAnswerSubmitted = false 
         currentQuestionIndex += 1
-        if currentQuestionIndex >= questions.count{
+        if currentQuestionIndex >= questions.count {
             finishQuiz()
         }
     }
@@ -84,6 +140,8 @@ class QuizViewModel: ObservableObject{
         self.questionCount = count
         print("updateQuestionCount |\(questionCount)")
     }
+    
+
 }
 
 
