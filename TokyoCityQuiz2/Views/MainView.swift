@@ -16,7 +16,7 @@ struct MainView: View {
     @State private var animate = false
     @State private var hasAnimated = false
     @State private var isShowLicense = false
-
+    
     @StateObject var quizViewModel =  QuizViewModel()
     private let scoreManager = ScoreManager()
     
@@ -26,11 +26,7 @@ struct MainView: View {
                 ZStack {
                     GradientBackground(startColor: .g_Orange, endColor: .g_Purple)
                     
-                    RoundedBottomBar()
-                    
-                    VStack {
-                        Spacer()
-                        
+                    RoundedBottomBar(){
                         let buttonSize = geometry.size.width * 0.15
                         let spacing = geometry.size.width * 0.1
                         
@@ -48,43 +44,41 @@ struct MainView: View {
                                 isShowRanking = true
                             }, size: buttonSize, icon: Image(systemName: "medal.fill"))
                         }
-                        .padding(.bottom, geometry.safeAreaInsets.bottom)
-                        
-                    }
-                    .navigationDestination(isPresented: $isShowRanking){
-                        RankingView(scoreManager: scoreManager)
-                    }
-                    .navigationDestination(isPresented: $isShowQuiz){
-                        QuizView(viewModel: quizViewModel)
-                            .environment(\.isInQuiz, true)
-
-                    }
-                    .navigationDestination(isPresented: $isShowSetting){
-                        SettingView(quizViewModel: quizViewModel)
-                    }
-                    .navigationDestination(isPresented: $isShowLicense) {
-                        InfoView()
-                    }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button(action: {
-                                isShowLicense = true
-                            }) {
-                                Image(systemName: "info.circle")
-                                    .imageScale(.large)
-                                    .foregroundColor(.white)
+                        .navigationDestination(isPresented: $isShowRanking){
+                            RankingView(scoreManager: scoreManager)
+                        }
+                        .navigationDestination(isPresented: $isShowQuiz){
+                            QuizView(viewModel: quizViewModel)
+                                .environment(\.isInQuiz, true)
+                        }
+                        .navigationDestination(isPresented: $isShowSetting){
+                            SettingView(quizViewModel: quizViewModel)
+                        }
+                        .navigationDestination(isPresented: $isShowLicense) {
+                            InfoView()
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: {
+                                    isShowLicense = true
+                                }) {
+                                    Image(systemName: "info.circle")
+                                        .imageScale(.large)
+                                        .foregroundColor(.white)
+                                }
                             }
                         }
                     }
-
+                    
                     let angle: Double = animate ? 1 : -1
+                    VStack{
+                        Spacer()
                         VStack{
                             Text("とないくしちょうそん")
                                 .font(.potta(size: 20))
                                 .foregroundColor(.white)
                                 .lineLimit(nil)
-                                .padding(.top, 100)
-                            
+                       
                             Text("都内区市町村")
                                 .font(.potta(size: 60))
                                 .foregroundColor(.white)
@@ -94,8 +88,7 @@ struct MainView: View {
                                 .font(.potta(size: 60))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity, alignment: .center)
-                            
-                            Spacer()
+                                .padding(.bottom,-20)
                         }
                         .rotationEffect(.degrees(angle))
                         .task {
@@ -110,14 +103,15 @@ struct MainView: View {
                             }
                             BGMPlayer.shared.playBackgroundMusic()
                         }
-                    Image("icon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 700)
-                        .padding(.top,60)
-                        .edgesIgnoringSafeArea(.bottom)
+                        Image("icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 700)
+                        Spacer()
+                    }
+                    
+                    
                 }
-                .edgesIgnoringSafeArea(.bottom)
             }
         }.navigationBarBackButtonHidden(true)
     }
