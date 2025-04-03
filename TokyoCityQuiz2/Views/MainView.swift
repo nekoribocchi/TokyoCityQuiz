@@ -15,6 +15,8 @@ struct MainView: View {
     @State private var isShowHome = false
     @State private var animate = false
     @State private var hasAnimated = false
+    @State private var isShowLicense = false
+
     @StateObject var quizViewModel =  QuizViewModel()
     private let scoreManager = ScoreManager()
     
@@ -60,6 +62,21 @@ struct MainView: View {
                     .navigationDestination(isPresented: $isShowSetting){
                         SettingView(quizViewModel: quizViewModel)
                     }
+                    .navigationDestination(isPresented: $isShowLicense) {
+                        InfoView()
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                isShowLicense = true
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .imageScale(.large)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+
                     let angle: Double = animate ? 1 : -1
                         VStack{
                             Text("とないくしちょうそん")

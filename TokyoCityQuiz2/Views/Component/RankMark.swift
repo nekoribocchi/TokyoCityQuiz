@@ -16,14 +16,14 @@ struct RankMark: View {
     
     var medal: Medal
     
-    var medalColor: Color {
+    var medalText: Int {
         switch medal {
         case .gold:
-            return .yellow
+            return 1
         case .silver:
-            return .gray
+            return 2
         case .copper:
-            return .brown
+            return 3
         }
     }
     
@@ -31,19 +31,16 @@ struct RankMark: View {
         ZStack {
             Circle()
                 .fill(
-                    AngularGradient(
-                        gradient: Gradient(colors: [medalColor, medalColor.opacity(0.7)]),
-                        center: .center,
-                        angle: .degrees(270)
-                    )
+                    LinearGradient(gradient: Gradient(colors: [.r_Orange, .r_Purple]),
+                                   startPoint: .top,
+                                   endPoint: .bottom)
                 )
                 .frame(width: 40, height: 40)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
-            
-//            Image(systemName: "medal")
-//                .font(.system(size: 20, weight: .bold))
-//                .foregroundColor(.white)
-                    }
+            Text("\(medalText)")
+                .font(.potta(size: 30))
+                .foregroundColor(.white)
+        }
     }
 }
 

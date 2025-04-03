@@ -23,7 +23,6 @@ extension EnvironmentValues {
 struct BackButton: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.isInQuiz) private var isInQuiz
-    
     var action: (() -> Void)? = nil
 
     var body: some View {
