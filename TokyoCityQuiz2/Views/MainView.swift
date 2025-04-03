@@ -74,8 +74,8 @@ struct MainView: View {
                                 Button(action: {
                                     isShowLicense = true
                                 }) {
-                                    Image(systemName: "info.circle")
-                                        .imageScale(.large)
+                                    Image(systemName: "info.circle.fill")
+                                        .font(.system(size: 20))
                                         .foregroundColor(.white)
                                 }
                             }
