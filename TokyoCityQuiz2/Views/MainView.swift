@@ -88,17 +88,17 @@ struct MainView: View {
                         VStack{
                             Text("とないくしちょうそん")
                                 .font(.potta(size: 20))
-                                .foregroundColor(.white)
+                                .foregroundColor(.g_Purple)
                                 .lineLimit(nil)
                        
                             Text("都内区市町村")
                                 .font(.potta(size: 60))
-                                .foregroundColor(.white)
+                                .foregroundColor(.g_Purple)
                                 .frame(maxWidth: .infinity, alignment: .center)
                             
                             Text("クイズ")
                                 .font(.potta(size: 60))
-                                .foregroundColor(.white)
+                                .foregroundColor(.g_Purple)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.bottom,-35)
                         }
@@ -115,7 +115,7 @@ struct MainView: View {
                             }
                             BGMPlayer.shared.playBackgroundMusic()
                         }
-                        Image("icon")
+                        Image("icon2")
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 600)
