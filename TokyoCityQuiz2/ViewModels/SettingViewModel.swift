@@ -16,10 +16,12 @@ class SettingViewModel: ObservableObject {
     
     init() {
         let storedCount = UserDefaults.standard.object(forKey: "questionCount") as? Int
+        
         if let count = storedCount {
             self.questionCount = count
         } else {
             self.questionCount = 10
+            UserDefaults.standard.set(10, forKey: "questionCount")
         }
     }
 }

@@ -33,10 +33,15 @@ struct QuizView: View {
                         }
                         RoundRectangleView(heightRatio: 0.8){
                             VStack{
-                                Text("この区市町村はどこ？")
-                                    .foregroundColor(.r_Purple)
-                                    .font(.potta(size: 15))
-                                
+                                ZStack{
+                                    Capsule()
+                                        .fill(.white)
+                                        .frame(width: 250,height: 40)
+                                        Text("Q.この区市町村はどこ？")
+                                            .foregroundColor(.r_Purple)
+                                            .font(.potta(size: 15))
+                                    
+                                }
                                 HStack {
                                     Spacer(minLength: 0)
                                     if(viewModel.questions.indices.contains(viewModel.currentQuestionIndex)){
@@ -44,6 +49,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(maxWidth: 700)
+                                         //   .frame(minWidth: 400)
                                         
                                         Spacer(minLength: 0)
                                     }}
@@ -53,6 +59,7 @@ struct QuizView: View {
                                 if(viewModel.questions.indices.contains(viewModel.currentQuestionIndex)){
                                     ForEach(0..<4) { index in
                                         ButtonBase.icon( title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
+                                                         heightRatio: 0.07,
                                                          backgroundColor: viewModel.getButtonColor(for: index),
                                                          textColor: viewModel.getButtonFontColor(for: index),
                                                          font: "PottaOne-Regular",
