@@ -70,7 +70,7 @@ struct QuizView: View {
                                             viewModel.selectAnswer(index: index)
                                             viewModel.isAnswerSubmitted = true
                                         })
-                                        .padding(5)
+                                        .padding(3)
                                     }
                                 }
                             }
