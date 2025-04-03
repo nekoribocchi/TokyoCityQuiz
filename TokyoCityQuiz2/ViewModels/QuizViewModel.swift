@@ -17,7 +17,7 @@ class QuizViewModel: ObservableObject{
     @Published var answerHistory: [Int] = []
     @Published var isQuizFinished: Bool = false
     @Published var scoreHistory: [Score] = []
-    @Published var questionCount: Int
+    @Published var questionCount: Int = 10
     @Published var lastScore: Score? = nil
     @Published var isAnswerSubmitted: Bool = false
     

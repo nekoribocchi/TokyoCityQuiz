@@ -31,7 +31,7 @@ struct QuizView: View {
                                     .font(.potta(size: 15))
                             }
                         }
-                        RoundRectangleView(heightRatio: 0.85){
+                        RoundRectangleView(heightRatio: 0.8){
                             VStack{
                                 Text("この区市町村はどこ？")
                                     .foregroundColor(.r_Purple)
@@ -39,31 +39,32 @@ struct QuizView: View {
                                 
                                 HStack {
                                     Spacer(minLength: 0)
-                                    
-                                    Image("\(viewModel.questions[viewModel.currentQuestionIndex].cityName)")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: 700)
-                                    
-                                    Spacer(minLength: 0)
-                                }
+                                    if(viewModel.questions.indices.contains(viewModel.currentQuestionIndex)){
+                                        Image("\(viewModel.questions[viewModel.currentQuestionIndex].cityName)")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(maxWidth: 700)
+                                        
+                                        Spacer(minLength: 0)
+                                    }}
                                 .padding(.horizontal, UIScreen.main.bounds.width / 15)
                                 QuizProgressSliderView(progress: Double(viewModel.currentQuestionIndex + 1) / Double(viewModel.questionCount))
                                     .padding(.top, 10)
-                                
-                                ForEach(0..<4) { index in
-                                    ButtonBase.icon( title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
-                                                     backgroundColor: viewModel.getButtonColor(for: index),
-                                                     textColor: viewModel.getButtonFontColor(for: index),
-                                                     font: "PottaOne-Regular",
-                                                     isFurigana: true,
-                                                     furigana: cityDataProvider.furigana(for:viewModel.questions[viewModel.currentQuestionIndex].options[index] ) ?? "",
-                                                     iconName:viewModel.getButtonIcon(for: index) ?? "",
-                                                     action: {
-                                        viewModel.selectAnswer(index: index)
-                                        viewModel.isAnswerSubmitted = true
-                                    })
-                                    .padding(5)
+                                if(viewModel.questions.indices.contains(viewModel.currentQuestionIndex)){
+                                    ForEach(0..<4) { index in
+                                        ButtonBase.icon( title: viewModel.questions[viewModel.currentQuestionIndex].options[index],
+                                                         backgroundColor: viewModel.getButtonColor(for: index),
+                                                         textColor: viewModel.getButtonFontColor(for: index),
+                                                         font: "PottaOne-Regular",
+                                                         isFurigana: true,
+                                                         furigana: cityDataProvider.furigana(for:viewModel.questions[viewModel.currentQuestionIndex].options[index] ) ?? "",
+                                                         iconName:viewModel.getButtonIcon(for: index) ?? "",
+                                                         action: {
+                                            viewModel.selectAnswer(index: index)
+                                            viewModel.isAnswerSubmitted = true
+                                        })
+                                        .padding(5)
+                                    }
                                 }
                             }
                         }

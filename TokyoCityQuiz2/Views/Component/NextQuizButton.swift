@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NextQuizButton: View {
     var action: () -> Void
-    let offsetY: CGFloat = isTouchIDDevice() ? 180 : 0
+    let offsetY: CGFloat = isTouchIDDevice() ? 10 : 0
     
     var body: some View {
         GeometryReader { geometry in
@@ -30,15 +30,15 @@ struct NextQuizButton: View {
                             .shadow(radius: 5)
                             .position(
                                 x: geometry.size.width / 2,
-                                y: geometry.size.height - geometry.size.height * 0.07 + offsetY
+                                y: geometry.size.height - geometry.size.height * 0.04 + offsetY
                             )
                         
                         VStack{
                             Spacer()
                             Text("次へ")
                                 .foregroundColor(.white)
-                                .font(.potta(size: 30))
-                                .padding(30)
+                                .font(.potta(size: 20))
+                                .padding(10)
                         }
                     }
                     .contentShape(HalfCircle())
