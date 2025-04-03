@@ -74,7 +74,7 @@ struct QuizView: View {
                         }
                         
                         if viewModel.isAnswerSubmitted{
-                            NextQuizButton{
+                            NextButton{
                                 viewModel.goToNextQuestion()
                             }
                         }

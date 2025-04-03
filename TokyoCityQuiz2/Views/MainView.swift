@@ -54,6 +54,8 @@ struct MainView: View {
                     }
                     .navigationDestination(isPresented: $isShowQuiz){
                         QuizView(viewModel: quizViewModel)
+                            .environment(\.isInQuiz, true)
+
                     }
                     .navigationDestination(isPresented: $isShowSetting){
                         SettingView(quizViewModel: quizViewModel)
