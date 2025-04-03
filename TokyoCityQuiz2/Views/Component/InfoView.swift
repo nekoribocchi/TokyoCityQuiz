@@ -24,7 +24,7 @@ struct InfoView: View {
                                 Text("戻る")
                                     .font(.potta(size: 20))
                             }
-                            .foregroundColor(.r_Purple) // ← 好きな色に
+                            .foregroundColor(.r_Purple)
                         }
                         Spacer()
                     }

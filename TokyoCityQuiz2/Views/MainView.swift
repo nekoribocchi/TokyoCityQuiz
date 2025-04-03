@@ -26,23 +26,35 @@ struct MainView: View {
                 ZStack {
                     GradientBackground(startColor: .g_Orange, endColor: .g_Purple)
                     
-                    RoundedBottomBar(){
-                        let buttonSize = geometry.size.width * 0.15
+                    RoundedBottomBar(opacity: 0.7,heightRatio: 0.16){
+                        
                         let spacing = geometry.size.width * 0.1
                         
                         HStack(spacing: spacing) {
                             CustomCircleButton(action: {
                                 isShowSetting = true
-                            }, size: buttonSize, icon: Image(systemName: "gearshape.fill"))
+                            }, size: 60, icon: Image(systemName: "gearshape.fill")){
+                                Text("設定")
+                                    .font(.potta(size: 15))
+                                    .foregroundColor(.r_Orange)
+                            }
                             
                             CustomCircleButton(action: {
                                 quizViewModel.startNewQuiz()
                                 isShowQuiz = true
-                            }, size: buttonSize, icon: Image(systemName: "gamecontroller.fill"))
+                            }, size: 60, icon: Image(systemName: "gamecontroller.fill")){
+                                Text("遊ぶ")
+                                    .font(.potta(size: 15))
+                                    .foregroundColor(.r_Orange)
+                            }
                             
                             CustomCircleButton(action: {
                                 isShowRanking = true
-                            }, size: buttonSize, icon: Image(systemName: "medal.fill"))
+                            }, size: 60, icon: Image(systemName: "medal.fill")){
+                                Text("スコア")
+                                    .font(.potta(size: 15))
+                                    .foregroundColor(.r_Orange)
+                            }
                         }
                         .navigationDestination(isPresented: $isShowRanking){
                             RankingView(scoreManager: scoreManager)
@@ -88,7 +100,7 @@ struct MainView: View {
                                 .font(.potta(size: 60))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity, alignment: .center)
-                                .padding(.bottom,-20)
+                                .padding(.bottom,-35)
                         }
                         .rotationEffect(.degrees(angle))
                         .task {
@@ -106,7 +118,7 @@ struct MainView: View {
                         Image("icon")
                             .resizable()
                             .scaledToFit()
-                            .frame(maxWidth: 700)
+                            .frame(maxWidth: 600)
                         Spacer()
                     }
                     
