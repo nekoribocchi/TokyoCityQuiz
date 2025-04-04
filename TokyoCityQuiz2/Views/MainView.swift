@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  TokyoCityQuiz2
 //
-//  Created by 羽田野真央 on 2025/02/04.
+//  Created by nekoribocchi on 2025/02/04.
 //
 
 import SwiftUI
@@ -32,17 +32,17 @@ struct MainView: View {
                         VStack{
                             Text("とないくしちょうそん")
                                 .font(.potta(size: 20))
-                                .foregroundColor(.g_Purple)
+                                .foregroundColor(.r_Purple)
                                 .lineLimit(nil)
                        
                             Text("都内区市町村")
                                 .font(.potta(size: 60))
-                                .foregroundColor(.g_Purple)
+                                .foregroundColor(.r_Purple)
                                 .frame(maxWidth: .infinity, alignment: .center)
                             
                             Text("クイズ")
                                 .font(.potta(size: 60))
-                                .foregroundColor(.g_Purple)
+                                .foregroundColor(.r_Purple)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.bottom,-60)
                         }
@@ -59,7 +59,7 @@ struct MainView: View {
                             }
                             BGMPlayer.shared.playBackgroundMusic()
                         }
-                        Image("icon2")
+                        Image("icon_trans")
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 600)

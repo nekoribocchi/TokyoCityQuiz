@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8A098E1C2D9D325F0094DE33 /* GlassmorphismUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8A098E1B2D9D325F0094DE33 /* GlassmorphismUI */; };
-		8AD078E22D95292C00CD757F /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 8AD078E12D95292C00CD757F /* UIOnboarding */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +41,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A098E1C2D9D325F0094DE33 /* GlassmorphismUI in Frameworks */,
-				8AD078E22D95292C00CD757F /* UIOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +91,6 @@
 			);
 			name = TokyoCityQuiz2;
 			packageProductDependencies = (
-				8AD078E12D95292C00CD757F /* UIOnboarding */,
 				8A098E1B2D9D325F0094DE33 /* GlassmorphismUI */,
 			);
 			productName = TokyoCityQuiz2;
@@ -125,7 +122,6 @@
 			mainGroup = 8A3AE31D2D51C3C1007F1572;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				8AD078E02D95292C00CD757F /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 				8A098E1A2D9D325F0094DE33 /* XCRemoteSwiftPackageReference "GlassmorphismUI" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -389,14 +385,6 @@
 				kind = branch;
 			};
 		};
-		8AD078E02D95292C00CD757F /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -404,11 +392,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8A098E1A2D9D325F0094DE33 /* XCRemoteSwiftPackageReference "GlassmorphismUI" */;
 			productName = GlassmorphismUI;
-		};
-		8AD078E12D95292C00CD757F /* UIOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8AD078E02D95292C00CD757F /* XCRemoteSwiftPackageReference "UIOnboarding" */;
-			productName = UIOnboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

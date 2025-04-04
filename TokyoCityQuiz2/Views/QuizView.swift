@@ -2,7 +2,7 @@
 //  QuizView.swift
 //  TokyoCityQuiz2
 //
-//  Created by 羽田野真央 on 2025/02/04.
+//  Created by nekoribocchi on 2025/02/04.
 //
 import SwiftUI
 import GlassmorphismUI
@@ -49,7 +49,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(maxWidth: 700)
-                                         //   .frame(minWidth: 400)
+                                            .frame(minWidth: 700)
                                         
                                         Spacer(minLength: 0)
                                     }}
