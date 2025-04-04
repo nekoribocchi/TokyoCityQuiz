@@ -26,6 +26,47 @@ struct MainView: View {
                 ZStack {
                     GradientBackground(startColor: .g_Orange, endColor: .g_Purple)
                     
+                    let angle: Double = animate ? 1 : -1
+                    VStack{
+                        Spacer()
+                        VStack{
+                            Text("とないくしちょうそん")
+                                .font(.potta(size: 20))
+                                .foregroundColor(.g_Purple)
+                                .lineLimit(nil)
+                       
+                            Text("都内区市町村")
+                                .font(.potta(size: 60))
+                                .foregroundColor(.g_Purple)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            Text("クイズ")
+                                .font(.potta(size: 60))
+                                .foregroundColor(.g_Purple)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.bottom,-60)
+                        }
+                        .rotationEffect(.degrees(angle))
+                        .task {
+                            if !hasAnimated{
+                                withAnimation(
+                                    .easeInOut(duration: 0.7)
+                                    .repeatForever(autoreverses: true)
+                                ) {
+                                    animate.toggle()
+                                }
+                                hasAnimated = true
+                            }
+                            BGMPlayer.shared.playBackgroundMusic()
+                        }
+                        Image("icon2")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 600)
+                        Spacer()
+                    }
+                    
+                    
                     RoundedBottomBar(opacity: 0.7,heightRatio: 0.16){
                         
                         let spacing = geometry.size.width * 0.1
@@ -82,46 +123,7 @@ struct MainView: View {
                         }
                     }
                     
-                    let angle: Double = animate ? 1 : -1
-                    VStack{
-                        Spacer()
-                        VStack{
-                            Text("とないくしちょうそん")
-                                .font(.potta(size: 20))
-                                .foregroundColor(.g_Purple)
-                                .lineLimit(nil)
-                       
-                            Text("都内区市町村")
-                                .font(.potta(size: 60))
-                                .foregroundColor(.g_Purple)
-                                .frame(maxWidth: .infinity, alignment: .center)
-                            
-                            Text("クイズ")
-                                .font(.potta(size: 60))
-                                .foregroundColor(.g_Purple)
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .padding(.bottom,-35)
-                        }
-                        .rotationEffect(.degrees(angle))
-                        .task {
-                            if !hasAnimated{
-                                withAnimation(
-                                    .easeInOut(duration: 0.7)
-                                    .repeatForever(autoreverses: true)
-                                ) {
-                                    animate.toggle()
-                                }
-                                hasAnimated = true
-                            }
-                            BGMPlayer.shared.playBackgroundMusic()
-                        }
-                        Image("icon2")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 600)
-                        Spacer()
-                    }
-                    
+                 
                     
                 }
             }
