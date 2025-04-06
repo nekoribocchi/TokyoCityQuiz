@@ -6,31 +6,76 @@
 //
 
 import SwiftUI
+import GlassmorphismUI
 
 struct SettingView: View {
-    @ObservedObject var viewModel: QuizViewModel
-
+    @State var quizViewModel: QuizViewModel
+    @State var isShowQuiz: Bool = false
+    @State private var volume: Double = 0.5
+    @EnvironmentObject var settingViewModel: SettingViewModel
+    
+    let sumQuestion: [Int] = [5,10,15,20,30]
     var body: some View {
-        VStack {
-            Text("問題数を選択してください")
-            
-            Picker("問題数", selection: $viewModel.questionCount) {
-                ForEach(1..<4) { count in
-                    Text("\(count)問")
+        NavigationStack{
+            ZStack {
+                RoundedTopBar(isGradient: true){
+                    Text("設定")
+                        .font(.potta(size: 30))
+                        .foregroundColor(.white)
                 }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            
-            Button("クイズを開始") {
-                // クイズ画面へ遷移
+                BackButton()
+                RoundRectangleView(heightRatio: 0.8){
+                    
+                    VStack {
+                        Text("問題数")
+                            .font(.potta(size: 20))
+                        
+                        Picker("問題数", selection: $settingViewModel.questionCount) {
+                            ForEach(sumQuestion, id: \.self) { count in
+                                Text("\(count)問")
+                            }
+                        }
+                        .onChange(of: settingViewModel.questionCount, initial: true){ oldValue, newValue in
+                            print("新しい値に変わったよ！old:\(oldValue) new:\(newValue)")
+                            print(UserDefaults.standard.integer(forKey: "questionCount"))
+                            quizViewModel.updateQuestionCount(newValue)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.bottom, 15)
+                        
+                        Text("BGM")
+                            .font(.potta(size: 20))
+                        HStack {
+                            Image(systemName: "speaker.fill")
+                            VolumeSliderView(value: $volume)
+                                .onChange(of: volume) { oldValue, newValue in
+                                    UserDefaults.standard.set(newValue, forKey: "bgmVolume")
+                                    BGMPlayer.shared.setVolume(newValue)
+                                    print("音量を保存したよ！: \(newValue)")
+                                }
+
+                            Image(systemName: "speaker.wave.3.fill")
+                        }
+                        Spacer()
+                        ButtonBase.simple(title: "遊ぶ", font: "PottaOne-Regular", isFurigana: true, furigana: "あそぶ") {
+                            isShowQuiz = true
+                            quizViewModel = QuizViewModel()
+                        }
+                    }
+                }
+                .navigationBarBackButtonHidden(true)
+      
             }
         }
-        .navigationBarBackButtonHidden(true)
-        .padding()
+        .navigationDestination(isPresented: $isShowQuiz) {
+            QuizView(viewModel: quizViewModel)
+        }
     }
 }
-
 #Preview {
+    let quizViewModel = QuizViewModel()
+    let settingViewModel = SettingViewModel()
     
-    SettingView(viewModel: QuizViewModel(questionCount: 2))
+    SettingView(quizViewModel: quizViewModel)
+        .environmentObject(settingViewModel)
 }

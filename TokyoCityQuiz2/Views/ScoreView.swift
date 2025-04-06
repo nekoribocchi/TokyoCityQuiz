@@ -20,14 +20,18 @@ struct ScoreView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                RoundedTopBar(text: "今回のスコア", isGradient: true)
+                RoundedTopBar(isGradient: true){
+                    Text("今回のスコア")
+                        .font(.potta(size: 30))
+                        .foregroundColor(.white)
+                }
                 
                 RoundRectangleView(heightRatio: 0.8){
                     VStack{
                         
                         CircleGradientView(content: {
                             VStack{
-                                Text("30点")
+                                Text("\(quizViewModel.lastScore?.score ?? 0)点")
                                     .font(.potta(size: 60))
                                 
                                 Text("その調子！")
@@ -42,7 +46,7 @@ struct ScoreView: View {
                             furigana: "りぷれい",
                             action: {
                                 isShowQuiz = true
-                                quizViewModel.resetQuiz()
+                                quizViewModel.startNewQuiz()
                             }
                         )
                         
@@ -85,5 +89,5 @@ struct ScoreView: View {
 }
 
 #Preview {
-    ScoreView(quizViewModel: QuizViewModel(questionCount: 3))
+    ScoreView(quizViewModel: QuizViewModel())
 }
